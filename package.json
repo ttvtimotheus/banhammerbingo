@@ -12,6 +12,7 @@
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "login": "devvit login",
     "prettier": "prettier --write .",
+    "test:logic": "tsc --build tools/tsconfig.game.json tools/tsconfig.test.json --force && esbuild src/game/logic.test.ts --bundle --platform=node --format=esm --outfile=dist/test/logic.test.mjs && node --test dist/test/logic.test.mjs",
     "type-check": "tsc --build"
   },
   "engines": {

@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../dist/types/game",
+    "tsBuildInfoFile": "../dist/types/game/tsconfig.tsbuildinfo",
+    "rootDir": "../src/game"
+  },
+  "include": ["../src/game/**/*.ts"],
+  "exclude": ["../src/game/**/*.test.ts"]
+}

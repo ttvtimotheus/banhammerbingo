@@ -4,11 +4,14 @@
     "outDir": "../dist/types/client",
     "tsBuildInfoFile": "../dist/types/client/tsconfig.tsbuildinfo",
     "customConditions": ["browser"],
-    "rootDir": "../src/client"
+    "rootDir": "../src"
   },
-  "include": ["../src/client/**/*"],
+  "include": ["../src/client/**/*", "../src/components/**/*"],
   "exclude": [],
   "references": [
+    {
+      "path": "./tsconfig.game.json"
+    },
     {
       "path": "./tsconfig.shared.json"
     }

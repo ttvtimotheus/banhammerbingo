@@ -6,11 +6,14 @@
     "customConditions": [],
     "types": ["node"],
     "exactOptionalPropertyTypes": false,
-    "rootDir": "../src/server"
+    "rootDir": "../src"
   },
   "include": ["../src/server/**/*"],
   "exclude": [],
   "references": [
+    {
+      "path": "./tsconfig.game.json"
+    },
     {
       "path": "./tsconfig.shared.json"
     }

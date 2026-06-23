@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": false,
+    "outDir": "../dist/test",
+    "rootDir": "../src",
+    "types": ["node"],
+    "tsBuildInfoFile": "../dist/test/tsconfig.tsbuildinfo"
+  },
+  "include": ["../src/**/*.test.ts"],
+  "references": [
+    {
+      "path": "./tsconfig.game.json"
+    }
+  ]
+}

@@ -1,18 +1,12 @@
-export type InitResponse = {
-  type: 'init';
-  postId: string;
-  count: number;
-  username: string;
-};
+export type {
+  DemoRequest,
+  InitGameResponse,
+  ResolveResponse,
+  RestartResponse,
+  VoteResponse,
+} from '../game/types';
 
-export type IncrementResponse = {
-  type: 'increment';
-  postId: string;
-  count: number;
-};
-
-export type DecrementResponse = {
-  type: 'decrement';
-  postId: string;
-  count: number;
+export type ErrorResponse = {
+  status: 'error';
+  message: string;
 };

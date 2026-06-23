@@ -20,23 +20,23 @@
   "menu": {
     "items": [
       {
-        "label": "Create a new post",
-        "description": "banhammerbingo",
+        "label": "Create Banhammer Bingo post",
+        "description": "Start a daily community chaos sim",
         "location": "subreddit",
         "forUserType": "moderator",
         "endpoint": "/internal/menu/post-create"
-      },
-      {
-        "label": "Example form",
-        "description": "Show a simple form",
-        "location": "subreddit",
-        "forUserType": "moderator",
-        "endpoint": "/internal/menu/example-form"
       }
     ]
   },
   "forms": {
     "exampleForm": "/internal/form/example-submit"
+  },
+  "scheduler": {
+    "tasks": {
+      "daily-resolution": {
+        "endpoint": "/internal/scheduler/daily-resolution"
+      }
+    }
   },
   "triggers": {
     "onAppInstall": "/internal/triggers/on-app-install"

@@ -21,19 +21,23 @@ export default defineConfig([
   },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ['src/shared/**/*.{ts,tsx,mjs,cjs,js}'],
+    files: ['src/shared/**/*.{ts,tsx,mjs,cjs,js}', 'src/game/**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2023,
       globals: globals.browser,
       parserOptions: {
-        project: ['./tools/tsconfig.shared.json'],
+        project: [
+          './tools/tsconfig.shared.json',
+          './tools/tsconfig.game.json',
+          './tools/tsconfig.test.json',
+        ],
         tsconfigRootDir: import.meta.dirname,
       },
     },
   },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ['src/client/**/*.{ts,tsx}'],
+    files: ['src/client/**/*.{ts,tsx}', 'src/components/**/*.{ts,tsx}'],
     ignores: ['src/server/**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2023,

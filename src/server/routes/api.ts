@@ -1,93 +1,145 @@
 import { Hono } from 'hono';
-import { context, redis, reddit } from '@devvit/web/server';
+import { context } from '@devvit/web/server';
+import {
+  buildGameResponse,
+  getCurrentViewer,
+  getOrCreateGameState,
+  isDemoEnabled,
+  restartGame,
+  resolveGameDayForPost,
+  runDemoAction,
+  submitVote,
+} from '../core/game';
+import type { DemoRequest } from '../../game/types';
 import type {
-  DecrementResponse,
-  IncrementResponse,
-  InitResponse,
+  ErrorResponse,
+  InitGameResponse,
+  ResolveResponse,
+  RestartResponse,
+  VoteResponse,
 } from '../../shared/api';
-
-type ErrorResponse = {
-  status: 'error';
-  message: string;
-};
 
 export const api = new Hono();
 
-api.get('/init', async (c) => {
-  const { postId } = context;
+const getPostId = (): string | null => context.postId ?? null;
 
+api.get('/init', async (c) => {
+  const postId = getPostId();
   if (!postId) {
-    console.error('API Init Error: postId not found in devvit context');
     return c.json<ErrorResponse>(
-      {
-        status: 'error',
-        message: 'postId is required but missing from context',
-      },
+      { status: 'error', message: 'postId is required but missing from context' },
       400
     );
   }
 
   try {
-    const [count, username] = await Promise.all([
-      redis.get('count'),
-      reddit.getCurrentUsername(),
+    const now = Date.now();
+    const [viewer, state] = await Promise.all([
+      getCurrentViewer(),
+      getOrCreateGameState(postId, now),
     ]);
-
-    return c.json<InitResponse>({
-      type: 'init',
-      postId: postId,
-      count: count ? parseInt(count) : 0,
-      username: username ?? 'anonymous',
-    });
+    return c.json<InitGameResponse>(await buildGameResponse(postId, viewer, state));
   } catch (error) {
-    console.error(`API Init Error for post ${postId}:`, error);
-    let errorMessage = 'Unknown error during initialization';
-    if (error instanceof Error) {
-      errorMessage = `Initialization failed: ${error.message}`;
-    }
+    console.error(`Banhammer Bingo init failed for ${postId}`, error);
     return c.json<ErrorResponse>(
-      { status: 'error', message: errorMessage },
-      400
+      { status: 'error', message: 'The mod queue jammed while loading the game.' },
+      500
     );
   }
 });
 
-api.post('/increment', async (c) => {
-  const { postId } = context;
+api.post('/vote', async (c) => {
+  const postId = getPostId();
   if (!postId) {
-    return c.json<ErrorResponse>(
-      {
-        status: 'error',
-        message: 'postId is required',
-      },
-      400
-    );
+    return c.json<ErrorResponse>({ status: 'error', message: 'postId is required' }, 400);
   }
 
-  const count = await redis.incrBy('count', 1);
-  return c.json<IncrementResponse>({
-    count,
-    postId,
-    type: 'increment',
-  });
+  const body = await c.req.json<{ choiceId?: string }>();
+  if (!body.choiceId) {
+    return c.json<ErrorResponse>({ status: 'error', message: 'choiceId is required' }, 400);
+  }
+
+  try {
+    const response = await submitVote({
+      postId,
+      viewer: await getCurrentViewer(),
+      choiceId: body.choiceId,
+      now: Date.now(),
+    });
+    return c.json<VoteResponse>(response);
+  } catch (error) {
+    console.error(`Banhammer Bingo vote failed for ${postId}`, error);
+    return c.json<ErrorResponse>(
+      { status: 'error', message: 'The vote fell into the mod queue. Try again.' },
+      500
+    );
+  }
 });
 
-api.post('/decrement', async (c) => {
-  const { postId } = context;
+api.post('/demo', async (c) => {
+  const postId = getPostId();
   if (!postId) {
+    return c.json<ErrorResponse>({ status: 'error', message: 'postId is required' }, 400);
+  }
+  if (!isDemoEnabled()) {
     return c.json<ErrorResponse>(
-      {
-        status: 'error',
-        message: 'postId is required',
-      },
-      400
+      { status: 'error', message: 'Demo controls are disabled for this environment.' },
+      403
     );
   }
 
-  const count = await redis.incrBy('count', -1);
-  return c.json<DecrementResponse>({
-    count,
+  try {
+    const body = await c.req.json<DemoRequest>();
+    const response = await runDemoAction({
+      postId,
+      action: body.action,
+      now: Date.now(),
+    });
+
+    if (response.type === 'restart_result') return c.json<RestartResponse>(response);
+    return c.json<ResolveResponse>(response);
+  } catch (error) {
+    console.error(`Banhammer Bingo demo action failed for ${postId}`, error);
+    return c.json<ErrorResponse>(
+      { status: 'error', message: 'Demo controls tripped over the queue.' },
+      500
+    );
+  }
+});
+
+api.post('/resolve-demo', async (c) => {
+  const postId = getPostId();
+  if (!postId) {
+    return c.json<ErrorResponse>({ status: 'error', message: 'postId is required' }, 400);
+  }
+  if (!isDemoEnabled()) {
+    return c.json<ErrorResponse>(
+      { status: 'error', message: 'Demo controls are disabled for this environment.' },
+      403
+    );
+  }
+
+  const response = await resolveGameDayForPost({
     postId,
-    type: 'decrement',
+    now: Date.now(),
+    allowEarly: true,
   });
+  return c.json<ResolveResponse>(response);
+});
+
+api.post('/restart', async (c) => {
+  const postId = getPostId();
+  if (!postId) {
+    return c.json<ErrorResponse>({ status: 'error', message: 'postId is required' }, 400);
+  }
+
+  const state = await getOrCreateGameState(postId, Date.now());
+  if (!state.currentEnding && !isDemoEnabled()) {
+    return c.json<ErrorResponse>(
+      { status: 'error', message: 'Restart unlocks after the community reaches an ending.' },
+      403
+    );
+  }
+
+  return c.json<RestartResponse>(await restartGame(postId, Date.now()));
 });
