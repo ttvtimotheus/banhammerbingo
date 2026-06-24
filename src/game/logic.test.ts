@@ -10,6 +10,11 @@ import {
   getCommunityTitle,
   resolveDay,
 } from './logic';
+import {
+  applyVoteProgress,
+  createInitialUserProgress,
+  getVisibleMilestoneLabels,
+} from './progress';
 import type { Choice, GameEvent, TopArgument } from './types';
 
 const choices: [Choice, Choice, Choice, Choice] = [
@@ -149,4 +154,19 @@ void test('detects endings and assigns readable community titles', () => {
   assert.equal(checkForEnding({ trust: 0, drama: 30, growth: 40, quality: 50, modStress: 20, reputation: 10 }, 4)?.id, 'community_revolt');
   assert.equal(checkForEnding({ trust: 50, drama: 20, growth: 100, quality: 75, modStress: 20, reputation: 30 }, 12)?.id, 'healthy_community');
   assert.equal(getCommunityTitle({ trust: 74, drama: 18, growth: 66, quality: 78, modStress: 19, reputation: 72 }), 'Surprisingly Healthy Forum');
+});
+
+void test('tracks streaks, points, and visible milestones for daily voting', () => {
+  const dayOne = applyVoteProgress(createInitialUserProgress(), 1, 1_000);
+  const dayTwo = applyVoteProgress(dayOne.progress, 2, 2_000);
+  const dayThree = applyVoteProgress(dayTwo.progress, 3, 3_000);
+  const dayFive = applyVoteProgress(dayThree.progress, 5, 5_000);
+
+  assert.equal(dayOne.progress.currentStreak, 1);
+  assert.equal(dayThree.progress.currentStreak, 3);
+  assert.equal(dayThree.newMilestones.includes('streak_3'), true);
+  assert.equal(dayFive.progress.currentStreak, 1);
+  assert.equal(dayFive.progress.bestStreak, 3);
+  assert.equal(getVisibleMilestoneLabels(dayFive.progress).includes('3-day streak'), true);
+  assert.equal(dayFive.progress.totalPoints > dayOne.progress.totalPoints, true);
 });

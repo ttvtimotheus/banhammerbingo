@@ -7,6 +7,8 @@ import type {
   ResolveResponse,
   RestartResponse,
   RoleName,
+  SubscribeResponse,
+  UserProgress,
   UserVoteRecord,
   VoteResponse,
 } from '../../game/types';
@@ -22,6 +24,7 @@ type GameViewState = {
   event: GameEvent | null;
   userVote: UserVoteRecord | null;
   userRole: RoleName | null;
+  userProgress: UserProgress | null;
   votePercentages: Record<string, number>;
   isDemoEnabled: boolean;
 };
@@ -37,6 +40,7 @@ const initialState: GameViewState = {
   event: null,
   userVote: null,
   userRole: null,
+  userProgress: null,
   votePercentages: {},
   isDemoEnabled: false,
 };
@@ -62,6 +66,7 @@ export const useGame = () => {
       event: data.event,
       userVote: data.userVote,
       userRole: data.userRole,
+      userProgress: data.userProgress,
       votePercentages: data.votePercentages,
       isDemoEnabled: data.isDemoEnabled,
     });
@@ -99,6 +104,7 @@ export const useGame = () => {
       event: data.event,
       userVote: data.userVote,
       userRole: data.userRole,
+      userProgress: data.userProgress,
       votePercentages: data.votePercentages,
     }));
   }, []);
@@ -182,11 +188,34 @@ export const useGame = () => {
     }
   }, [applyResolution]);
 
+  const subscribe = useCallback(async () => {
+    setViewState((current) => ({ ...current, submitting: true, error: null }));
+    try {
+      const response = await fetch('/api/subscribe', { method: 'POST' });
+      await assertOk(response);
+      const data: SubscribeResponse = await response.json();
+      setViewState((current) => ({
+        ...current,
+        submitting: false,
+        error: null,
+        message: data.message,
+        userProgress: data.userProgress,
+      }));
+    } catch (error) {
+      setViewState((current) => ({
+        ...current,
+        submitting: false,
+        error: error instanceof Error ? error.message : 'Subscribe failed.',
+      }));
+    }
+  }, []);
+
   return {
     ...viewState,
     refresh,
     vote,
     runDemoAction,
     restart,
+    subscribe,
   } as const;
 };

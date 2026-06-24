@@ -84,11 +84,46 @@ export type UserVoteRecord = VoteInput & {
   roleAfterVote: RoleName;
 };
 
+export type MilestoneId =
+  | 'first_vote'
+  | 'streak_3'
+  | 'streak_7'
+  | 'streak_14'
+  | 'streak_30'
+  | 'points_100'
+  | 'points_250'
+  | 'points_500';
+
+export type UserProgress = {
+  totalPoints: number;
+  currentStreak: number;
+  bestStreak: number;
+  lastVoteDay: number | null;
+  lastVoteAt: number | null;
+  milestones: MilestoneId[];
+  subscribedAt: number | null;
+};
+
+export type LeaderboardEntry = {
+  username: string;
+  role: RoleName;
+  totalPoints: number;
+  currentStreak: number;
+  bestStreak: number;
+};
+
+export type RecapCommentRecord = {
+  day: number;
+  commentId: string | null;
+  createdAt: number;
+};
+
 export type UserRoleRecord = {
   userId: string;
   username: string;
   currentRole: RoleName;
   roleScores: RoleScoreMap;
+  progress: UserProgress;
   voteHistory: UserVoteRecord[];
   updatedAt: number;
 };
@@ -148,6 +183,8 @@ export type GameState = {
   lastResolvedAt: number | null;
   nextResolutionAt: number;
   roleCounts: Partial<Record<RoleName, number>>;
+  leaderboard: LeaderboardEntry[];
+  recapCommentHistory: RecapCommentRecord[];
 };
 
 export type InitGameResponse = {
@@ -160,6 +197,7 @@ export type InitGameResponse = {
   event: GameEvent;
   userVote: UserVoteRecord | null;
   userRole: RoleName | null;
+  userProgress: UserProgress | null;
   votePercentages: Record<string, number>;
 };
 
@@ -171,7 +209,15 @@ export type VoteResponse = {
   event: GameEvent;
   userVote: UserVoteRecord | null;
   userRole: RoleName | null;
+  userProgress: UserProgress | null;
   votePercentages: Record<string, number>;
+};
+
+export type SubscribeResponse = {
+  type: 'subscribe_result';
+  status: 'success';
+  message: string;
+  userProgress: UserProgress;
 };
 
 export type ResolveResponse = {

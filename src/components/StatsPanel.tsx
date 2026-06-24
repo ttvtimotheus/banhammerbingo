@@ -15,21 +15,21 @@ const labels: Array<{ key: keyof Stats; label: string; className: string }> = [
 ];
 
 export const StatsPanel = ({ stats, latestDay }: StatsPanelProps) => (
-  <section className="panel stats-panel" aria-labelledby="stats-heading">
-    <h2 id="stats-heading">Community Stats</h2>
-    <div className="stats-grid">
+  <section className="stat-strip" aria-labelledby="stats-heading">
+    <h2 id="stats-heading" className="sr-only">Community Stats</h2>
+    <div className="stat-strip__grid">
       {labels.map((item) => {
         const change = latestDay?.effects[item.key] ?? null;
         return (
-          <div className={`stat-row ${item.className}`} key={item.key}>
-            <div className="stat-row__label">
+          <div className={`stat-chip ${item.className}`} key={item.key}>
+            <div className="stat-chip__label">
               <span>{item.label}</span>
               <span>
                 {stats[item.key]}
                 {change ? ` (${change > 0 ? '+' : ''}${change})` : ''}
               </span>
             </div>
-            <div className="stat-row__track" aria-hidden="true">
+            <div className="stat-chip__track" aria-hidden="true">
               <span style={{ width: `${stats[item.key]}%` }} />
             </div>
           </div>

@@ -8,6 +8,7 @@ import {
   restartGame,
   resolveGameDayForPost,
   runDemoAction,
+  subscribeViewerToCommunity,
   submitVote,
 } from '../core/game';
 import type { DemoRequest } from '../../game/types';
@@ -16,6 +17,7 @@ import type {
   InitGameResponse,
   ResolveResponse,
   RestartResponse,
+  SubscribeResponse,
   VoteResponse,
 } from '../../shared/api';
 
@@ -102,6 +104,37 @@ api.post('/demo', async (c) => {
     console.error(`Banhammer Bingo demo action failed for ${postId}`, error);
     return c.json<ErrorResponse>(
       { status: 'error', message: 'Demo controls tripped over the queue.' },
+      500
+    );
+  }
+});
+
+api.post('/subscribe', async (c) => {
+  const postId = getPostId();
+  if (!postId) {
+    return c.json<ErrorResponse>({ status: 'error', message: 'postId is required' }, 400);
+  }
+
+  try {
+    const viewer = await getCurrentViewer();
+    if (!viewer.userId) {
+      return c.json<ErrorResponse>(
+        { status: 'error', message: 'Sign in to join this community from the game.' },
+        401
+      );
+    }
+
+    return c.json<SubscribeResponse>(
+      await subscribeViewerToCommunity({
+        postId,
+        viewer,
+        now: Date.now(),
+      })
+    );
+  } catch (error) {
+    console.error(`Banhammer Bingo subscribe failed for ${postId}`, error);
+    return c.json<ErrorResponse>(
+      { status: 'error', message: 'Could not subscribe from the game post.' },
       500
     );
   }

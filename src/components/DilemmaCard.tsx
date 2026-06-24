@@ -19,10 +19,14 @@ export const DilemmaCard = ({
   submitting,
   onVote,
 }: DilemmaCardProps) => (
-  <section className="dilemma-card" aria-labelledby="dilemma-title">
+  <section className={`dilemma-card ${userVote ? 'dilemma-card--voted' : ''}`} aria-labelledby="dilemma-title">
     <div className="dilemma-card__meta">
       <span>{event.arc}</span>
-      <span>Severity {event.severity}/5</span>
+      <span className="heat-meter" aria-label={`Severity ${event.severity} of 5`}>
+        {Array.from({ length: 5 }, (_, index) => (
+          <span key={index} className={index < event.severity ? 'heat-meter__dot heat-meter__dot--on' : 'heat-meter__dot'} />
+        ))}
+      </span>
     </div>
     <h2 id="dilemma-title">{event.title}</h2>
     <p>{event.text}</p>
@@ -33,6 +37,7 @@ export const DilemmaCard = ({
           choice={choice}
           disabled={submitting}
           userVote={userVote}
+          revealEffects={Boolean(userVote)}
           onVote={onVote}
         />
       ))}
@@ -45,7 +50,7 @@ export const DilemmaCard = ({
         selectedChoiceId={userVote.choiceId}
       />
     ) : (
-      <p className="comment-prompt">Vote once, then explain your reasoning in the Reddit comments.</p>
+      <p className="comment-prompt">Pick the least doomed option. The comment section can explain the damage.</p>
     )}
   </section>
 );

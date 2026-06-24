@@ -17,6 +17,13 @@ import {
   resolveDay,
   selectNextEvent,
 } from '../../game/logic';
+import {
+  applyVoteProgress,
+  createInitialUserProgress,
+  getVisibleMilestoneLabels,
+  markSubscribed,
+  updateLeaderboard,
+} from '../../game/progress';
 import { createEmptyRoleScores, updateRoleRecord } from '../../game/roles';
 import {
   loadGameState,
@@ -27,12 +34,14 @@ import {
 } from '../../game/storage';
 import type {
   CommentCandidate,
+  Choice,
   DemoAction,
   GameEvent,
   GameState,
   InitGameResponse,
   ResolveResponse,
   RestartResponse,
+  SubscribeResponse,
   UserRoleRecord,
   VoteResponse,
 } from '../../game/types';
@@ -70,12 +79,18 @@ const ensureResolutionJob = async (
   await scheduleResolution(postId, state.nextResolutionAt);
 };
 
+const normaliseGameState = (state: GameState): GameState => ({
+  ...state,
+  leaderboard: state.leaderboard ?? [],
+  recapCommentHistory: state.recapCommentHistory ?? [],
+});
+
 export const getOrCreateGameState = async (
   postId: string,
   now: number
 ): Promise<GameState> => {
   const existing = await loadGameState(postId);
-  if (existing) return existing;
+  if (existing) return normaliseGameState(existing);
 
   const firstEvent = getFirstEvent();
   const state = createInitialGameState(
@@ -111,6 +126,7 @@ export const buildGameResponse = async (
     event,
     userVote,
     userRole: roleRecord?.currentRole ?? userVote?.roleAfterVote ?? null,
+    userProgress: roleRecord?.progress ?? null,
     votePercentages: getVotePercentages(event, state.votesForCurrentDay),
   };
 };
@@ -123,9 +139,24 @@ const createRoleRecord = (
   username: viewer.username,
   currentRole: 'Peacekeeper',
   roleScores: createEmptyRoleScores(),
+  progress: createInitialUserProgress(),
   voteHistory: [],
   updatedAt: now,
 });
+
+const normaliseRoleRecord = (
+  record: UserRoleRecord | null,
+  viewer: { userId: string; username: string },
+  now: number
+): UserRoleRecord => {
+  if (!record) return createRoleRecord(viewer, now);
+
+  return {
+    ...record,
+    username: viewer.username,
+    progress: { ...createInitialUserProgress(), ...(record.progress ?? {}) },
+  };
+};
 
 export const submitVote = async (input: {
   postId: string;
@@ -145,13 +176,14 @@ export const submitVote = async (input: {
       event,
       userVote: null,
       userRole: null,
+      userProgress: null,
       votePercentages: getVotePercentages(event, state.votesForCurrentDay),
     };
   }
 
   const existingRoleRecord =
-    (await loadUserRoleRecord(input.postId, input.viewer.userId)) ??
-    createRoleRecord(
+    normaliseRoleRecord(
+      await loadUserRoleRecord(input.postId, input.viewer.userId),
       { userId: input.viewer.userId, username: input.viewer.username },
       input.now
     );
@@ -178,6 +210,7 @@ export const submitVote = async (input: {
       event,
       userVote: result.userVote,
       userRole: result.userVote?.roleAfterVote ?? existingRoleRecord.currentRole,
+      userProgress: existingRoleRecord.progress,
       votePercentages: getVotePercentages(event, result.state.votesForCurrentDay),
     };
   }
@@ -186,29 +219,82 @@ export const submitVote = async (input: {
   if (!choice) throw new Error('Choice disappeared during vote processing');
 
   const roleUpdate = updateRoleRecord(existingRoleRecord.roleScores, choice);
+  const progressUpdate = applyVoteProgress(
+    existingRoleRecord.progress,
+    state.currentDay,
+    input.now
+  );
   const updatedRoleRecord: UserRoleRecord = {
     ...existingRoleRecord,
     username: input.viewer.username,
     currentRole: roleUpdate.role,
     roleScores: roleUpdate.roleScores,
+    progress: progressUpdate.progress,
     voteHistory: [...existingRoleRecord.voteHistory, result.userVote].slice(-60),
     updatedAt: input.now,
   };
+  const updatedState: GameState = {
+    ...result.state,
+    leaderboard: updateLeaderboard(result.state.leaderboard ?? [], {
+      username: input.viewer.username,
+      role: roleUpdate.role,
+      totalPoints: progressUpdate.progress.totalPoints,
+      currentStreak: progressUpdate.progress.currentStreak,
+      bestStreak: progressUpdate.progress.bestStreak,
+    }),
+  };
+  const milestoneLabels = getVisibleMilestoneLabels({
+    ...progressUpdate.progress,
+    milestones: progressUpdate.newMilestones,
+  });
+  const milestoneSuffix = milestoneLabels.length > 0
+    ? ` Milestone unlocked: ${milestoneLabels.join(', ')}.`
+    : '';
 
   await Promise.all([
-    saveGameState(input.postId, result.state),
+    saveGameState(input.postId, updatedState),
     saveUserRoleRecord(input.postId, updatedRoleRecord),
   ]);
 
   return {
     type: 'vote_result',
     accepted: true,
-    message: 'Vote locked. Now make your case in the comments.',
-    state: result.state,
+    message: `Vote locked. +${progressUpdate.pointsAwarded} chaos points.${milestoneSuffix} Now make your case in the comments.`,
+    state: updatedState,
     event,
     userVote: result.userVote,
     userRole: roleUpdate.role,
-    votePercentages: getVotePercentages(event, result.state.votesForCurrentDay),
+    userProgress: progressUpdate.progress,
+    votePercentages: getVotePercentages(event, updatedState.votesForCurrentDay),
+  };
+};
+
+export const subscribeViewerToCommunity = async (input: {
+  postId: string;
+  viewer: Viewer;
+  now: number;
+}): Promise<SubscribeResponse> => {
+  if (!input.viewer.userId) throw new Error('Sign in before subscribing.');
+
+  await reddit.subscribeToCurrentSubreddit();
+  const roleRecord = normaliseRoleRecord(
+    await loadUserRoleRecord(input.postId, input.viewer.userId),
+    { userId: input.viewer.userId, username: input.viewer.username },
+    input.now
+  );
+  const progress = markSubscribed(roleRecord.progress, input.now);
+
+  await saveUserRoleRecord(input.postId, {
+    ...roleRecord,
+    progress,
+    updatedAt: input.now,
+  });
+
+  return {
+    type: 'subscribe_result',
+    status: 'success',
+    message: 'Subscribed. Tomorrow\'s chaos now has a way back to your feed.',
+    userProgress: progress,
   };
 };
 
@@ -230,6 +316,74 @@ const readCommentCandidates = async (
   } catch (error) {
     console.warn(`Could not read Banhammer Bingo comments for ${postId}`, error);
     return [];
+  }
+};
+
+const formatEffect = (label: string, value: number | undefined): string | null => {
+  if (!value) return null;
+  return `${label} ${value > 0 ? '+' : ''}${value}`;
+};
+
+const formatRecapComment = (input: {
+  state: GameState;
+  event: GameEvent;
+  winningChoice: Choice;
+  resolvedState: GameState;
+  topArgument: ReturnType<typeof selectTopArgument>;
+}): string => {
+  const latestDay = input.resolvedState.resolvedDayHistory.at(-1);
+  const effects = [
+    formatEffect('Trust', input.winningChoice.effects.trust),
+    formatEffect('Drama', input.winningChoice.effects.drama),
+    formatEffect('Growth', input.winningChoice.effects.growth),
+    formatEffect('Quality', input.winningChoice.effects.quality),
+    formatEffect('Mod Stress', input.winningChoice.effects.modStress),
+    formatEffect('Reputation', input.winningChoice.effects.reputation),
+  ].filter((effect): effect is string => Boolean(effect));
+  const argumentLine = input.topArgument
+    ? `\nTop Argument: ${input.topArgument.username} - "${input.topArgument.excerpt}"`
+    : '\nTop Argument: No qualifying argument today. The comment section owes the queue receipts.';
+
+  return [
+    `Banhammer Bingo Day ${input.state.currentDay} Recap`,
+    '',
+    `Dilemma: ${input.event.title}`,
+    `Winning decision: ${input.winningChoice.label}`,
+    `Votes counted: ${latestDay?.totalVotes ?? 0}`,
+    `Effects: ${effects.length > 0 ? effects.join(', ') : 'No stat movement'}`,
+    `Consequence: ${input.winningChoice.consequence}`,
+    argumentLine,
+    '',
+    `Next up: Day ${input.resolvedState.currentDay} in ${input.resolvedState.communityName}. Vote in the interactive post and explain your reasoning here.`,
+  ].join('\n');
+};
+
+const publishDailyRecapComment = async (input: {
+  postId: string;
+  state: GameState;
+  event: GameEvent;
+  winningChoice: Choice;
+  resolvedState: GameState;
+  topArgument: ReturnType<typeof selectTopArgument>;
+  now: number;
+}): Promise<GameState> => {
+  try {
+    const post = await reddit.getPostById(T3(input.postId));
+    const comment = await post.addComment({
+      text: formatRecapComment(input),
+      runAs: 'APP',
+    });
+
+    return {
+      ...input.resolvedState,
+      recapCommentHistory: [
+        ...(input.resolvedState.recapCommentHistory ?? []),
+        { day: input.state.currentDay, commentId: comment.id, createdAt: input.now },
+      ].slice(-30),
+    };
+  } catch (error) {
+    console.warn(`Could not publish Banhammer Bingo recap for ${input.postId}`, error);
+    return input.resolvedState;
   }
 };
 
@@ -282,14 +436,23 @@ export const resolveGameDayForPost = async (input: {
     topArgument,
     resolvedAt: input.now,
   });
+  const finalState = await publishDailyRecapComment({
+    postId: input.postId,
+    state,
+    event,
+    winningChoice,
+    resolvedState,
+    topArgument,
+    now: input.now,
+  });
 
-  await saveGameState(input.postId, resolvedState);
-  await ensureResolutionJob(input.postId, resolvedState);
+  await saveGameState(input.postId, finalState);
+  await ensureResolutionJob(input.postId, finalState);
 
   return {
     type: 'resolve_result',
-    state: resolvedState,
-    event: getEventById(resolvedState.currentEventId),
+    state: finalState,
+    event: getEventById(finalState.currentEventId),
     message: `Day ${state.currentDay} resolved: ${winningChoice.label}.`,
   };
 };

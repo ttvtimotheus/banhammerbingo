@@ -315,9 +315,18 @@ h2 {
 .stats-panel,
 .consequence-panel,
 .how-to-play,
-.demo-controls {
+.demo-controls,
+.progress-panel {
 	display: grid;
 	gap: 14px;
+}
+
+.panel-kicker {
+	color: var(--accent-strong);
+	font-size: 0.75rem;
+	font-weight: 850;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
 }
 
 .stats-grid {
@@ -399,6 +408,7 @@ blockquote footer {
 
 .demo-controls button,
 .primary-action,
+.secondary-action,
 .state-screen button,
 .splash-card button {
 	border: 1px solid #7f5b2e;
@@ -407,6 +417,88 @@ blockquote footer {
 	color: #20140a;
 	font-weight: 850;
 	background: var(--accent-strong);
+}
+
+.secondary-action {
+	color: var(--text);
+	background: #3a281a;
+}
+
+.progress-panel__header {
+	display: grid;
+	gap: 12px;
+}
+
+.progress-metrics {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 8px;
+}
+
+.progress-metrics span {
+	display: grid;
+	gap: 3px;
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	padding: 10px;
+	color: var(--muted);
+	background: #1d1917;
+}
+
+.progress-metrics strong {
+	color: var(--text);
+	font-size: 1.18rem;
+}
+
+.mission-box,
+.milestone-list,
+.leaderboard-list,
+.role-standings {
+	display: grid;
+	gap: 8px;
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	padding: 12px;
+	background: #1d1917;
+}
+
+.milestone-list ul,
+.leaderboard-list ol,
+.role-standings ol {
+	display: grid;
+	gap: 8px;
+	margin: 0;
+	padding-left: 18px;
+	color: var(--muted);
+}
+
+.leaderboard-list li,
+.role-standings li {
+	padding-right: 4px;
+}
+
+.leaderboard-list li::marker,
+.role-standings li::marker,
+.milestone-list li::marker {
+	color: var(--accent-strong);
+}
+
+.leaderboard-list li,
+.role-standings li {
+	color: var(--muted);
+}
+
+.leaderboard-list li span:first-child,
+.role-standings li span:first-child {
+	color: var(--text);
+	font-weight: 800;
+}
+
+.leaderboard-list li span:last-child,
+.role-standings li span:last-child {
+	float: right;
+	color: var(--accent-strong);
+	font-weight: 800;
 }
 
 details {
@@ -541,6 +633,11 @@ pre {
 
 	.demo-controls__buttons {
 		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.progress-panel__header {
+		grid-template-columns: 1fr auto;
+		align-items: center;
 	}
 
 	.splash-card {

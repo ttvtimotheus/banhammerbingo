@@ -42,8 +42,8 @@ export const GAME_EVENTS = [
     choices: [
       {
         id: 'banhammer',
-        label: 'Swing the Banhammer',
-        description: 'Remove them before the rot spreads.',
+        label: 'Bonk With Banhammer',
+        description: 'Remove the legend and survive the fan club.',
         effects: { trust: 10, quality: 8, growth: -6, drama: 12, modStress: 5 },
         consequence:
           'The ban calms new users, but veterans start a protest thread titled "This Place Changed."',
@@ -52,8 +52,8 @@ export const GAME_EVENTS = [
       },
       {
         id: 'private_warning',
-        label: 'Send a Private Warning',
-        description: 'Try diplomacy before public punishment.',
+        label: 'DM Them Like An Adult',
+        description: 'Attempt diplomacy before everyone screenshots it.',
         effects: { trust: 4, quality: 3, drama: 3, modStress: 4 },
         consequence:
           'The situation cools down for now, but everyone screenshots the warning anyway.',
@@ -62,8 +62,8 @@ export const GAME_EVENTS = [
       },
       {
         id: 'content_flow',
-        label: 'Let the Content Flow',
-        description: 'Ignore the behaviour because numbers are numbers.',
+        label: 'Numbers Go Brrr',
+        description: 'Ignore the mess because traffic is traffic.',
         effects: { growth: 8, trust: -8, quality: -10, drama: 8 },
         consequence: 'Activity spikes, but new users begin quietly leaving.',
         tags: ['growth', 'new-user-exodus'],
@@ -71,8 +71,8 @@ export const GAME_EVENTS = [
       },
       {
         id: 'make_mod',
-        label: 'Make Them a Mod',
-        description: 'Weaponise the chaos.',
+        label: 'Promote the Problem',
+        description: 'Give the chaos a badge and a clipboard.',
         effects: { growth: 12, drama: 15, trust: -12, modStress: 10 },
         consequence: 'Engagement explodes. So does the mod queue.',
         tags: ['chaos', 'mod-war', 'power-user'],

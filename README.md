@@ -22,6 +22,8 @@ Each Reddit user can vote once per in-game day. Votes are keyed by Devvit user i
 
 If votes tie during resolution, Banhammer Bingo breaks ties by choosing the tied choice with the highest Drama increase. If that is still tied, it chooses the highest Mod Stress increase. If that is still tied, the first tied choice wins.
 
+Voting also awards chaos points, updates a personal daily streak, unlocks milestones, and refreshes the public Chaos Points Board. These rewards recognise return play without changing the vote outcome.
+
 ## Daily Resolution
 
 The game uses Devvit Scheduler plus a registered scheduler task in `devvit.json`:
@@ -44,9 +46,10 @@ When a day resolves, the server:
 4. Stores the consequence and resolved day history.
 5. Reads comments from the Reddit post.
 6. Selects Top Argument of the Day.
-7. Selects the next event using stats, tags, arcs, and recent history.
-8. Advances the day and schedules the next resolution.
-9. Checks endings, including the day 30 final report.
+7. Posts an app-authored daily recap comment with the winning choice, effects, consequence, and next-day prompt.
+8. Selects the next event using stats, tags, arcs, and recent history.
+9. Advances the day and schedules the next resolution.
+10. Checks endings, including the day 30 final report.
 
 ## Top Argument of the Day
 
@@ -79,6 +82,20 @@ Roles include:
 - Sponsor Gremlin
 
 Choices that reduce Drama and increase Trust push users toward Peacekeeper. Choices that increase Growth push Growth Hacker. Choices that increase Growth while lowering Quality push Sponsor Gremlin. Punitive choices contribute to Banhammer Enthusiast. The role badge appears after voting.
+
+## Retention Systems
+
+Banhammer Bingo now includes the core Reddit community-game retention loops recommended by the Devvit best-practices guide:
+
+- Daily dilemma: one quick repeatable decision loop.
+- Join CTA: a separate `Join for Tomorrow` action subscribes the logged-in user to the current subreddit through `reddit.subscribeToCurrentSubreddit()`.
+- Streaks: consecutive voting days increase current and best streaks.
+- Chaos points: each valid vote awards points, with streak and milestone bonuses.
+- Milestones: first vote, 3/7/14/30-day streaks, and point thresholds unlock visible badges.
+- Social recognition: the Chaos Points Board shows top players by points and streaks, while Role Momentum shows the most common voting archetypes.
+- Content flywheel: each resolved day can create a recap comment that keeps the discussion alive in the Reddit thread.
+
+The subscribe action is optional, explicit, and not required to vote or continue playing.
 
 ## Endings
 
@@ -180,7 +197,9 @@ The menu endpoint creates a new custom post titled `Banhammer Bingo: A Community
 - It uses Devvit Redis for persistent shared state.
 - It uses Devvit Scheduler for daily resolution.
 - It uses Reddit user identity to enforce one vote per user per day.
+- It uses Devvit user actions for an explicit subreddit subscribe CTA.
 - It reads Reddit comments to select Top Argument of the Day.
+- It creates daily recap comments to keep the post discussion active.
 - It is designed around shared voting, comments, daily return, community identity, and visible consequences.
 - It has no external backend, paid services, official Reddit logos, or copyrighted external assets.
 
@@ -249,30 +268,3 @@ Title: Banhammer Bingo: A Community Chaos Sim
 Short description: A Reddit native daily chaos sim where the community votes through terrible moderation dilemmas and watches a fictional forum survive, mutate, or collapse.
 
 Longer description: Banhammer Bingo turns a subreddit into the shared leadership team of a fictional online community. Every day, players vote on a chaotic moderation dilemma, argue their reasoning in the comments, and return to see how the winning decision changed the forum. Persistent stats, recurring story arcs, user roles, Top Argument of the Day, and multiple endings make the community itself the main character.
-## Devvit React Starter
-
-A starter to build web applications on Reddit's developer platform
-
-- [Devvit](https://developers.reddit.com/): A way to build and deploy immersive games on Reddit
-- [Vite](https://vite.dev/): For compiling the webView
-- [React](https://react.dev/): For UI
-- [Hono](https://hono.dev/): For backend logic
-- [Tailwind](https://tailwindcss.com/): For styles
-- [TypeScript](https://www.typescriptlang.org/): For type safety
-
-## Getting Started
-
-> Make sure you have Node 22 downloaded on your machine before running!
-
-1. Run `npm create devvit@latest --template=react`
-2. Go through the installation wizard. You will need to create a Reddit account and connect it to Reddit developers
-3. Copy the command on the success page into your terminal
-
-## Commands
-
-- `npm run dev`: Starts a development server where you can develop your application live on Reddit.
-- `npm run build`: Builds your client and server projects
-- `npm run deploy`: Uploads a new version of your app
-- `npm run launch`: Publishes your app for review
-- `npm run login`: Logs your CLI into Reddit
-- `npm run type-check`: Type checks, lints, and prettifies your app

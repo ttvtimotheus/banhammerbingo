@@ -63,6 +63,8 @@ export const createInitialGameState = (
   lastResolvedAt: null,
   nextResolutionAt: now + ONE_DAY_MS,
   roleCounts: {},
+  leaderboard: [],
+  recapCommentHistory: [],
 });
 
 export const normaliseVoteCounts = (

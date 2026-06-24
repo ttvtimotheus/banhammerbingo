@@ -1,6 +1,11 @@
 {
   "$schema": "https://developers.reddit.com/schema/config-file.v1.json",
   "name": "banhammerbingo",
+  "permissions": {
+    "reddit": {
+      "asUser": ["SUBSCRIBE_TO_SUBREDDIT"]
+    }
+  },
   "post": {
     "dir": "dist/client",
     "entrypoints": {

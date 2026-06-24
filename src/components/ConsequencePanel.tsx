@@ -9,21 +9,23 @@ export const ConsequencePanel = ({
   previousConsequence,
   topArgument,
 }: ConsequencePanelProps) => (
-  <section className="panel consequence-panel" aria-labelledby="consequence-heading">
-    <h2 id="consequence-heading">Yesterday in the Queue</h2>
-    <p>{previousConsequence ?? 'No consequences yet. The first incident is still loading its tiny cannon.'}</p>
-    <div className="argument-box">
-      <span className="argument-box__label">Top Argument of the Day</span>
-      {topArgument ? (
-        <blockquote>
-          <p>{topArgument.excerpt}</p>
-          <footer>
-            {topArgument.username} / {topArgument.scoreLabel}
-          </footer>
-        </blockquote>
-      ) : (
-        <p>No winning argument yet. Comments are where tomorrow gets its receipts.</p>
-      )}
+  <details className="mini-drawer consequence-drawer">
+    <summary id="consequence-heading">Yesterday&apos;s fallout</summary>
+    <div className="mini-drawer__body">
+      <p>{previousConsequence ?? 'No fallout yet. First vote, then consequence.'}</p>
+      <div className="argument-box">
+        <span className="argument-box__label">Top Argument</span>
+        {topArgument ? (
+          <blockquote>
+            <p>{topArgument.excerpt}</p>
+            <footer>
+              {topArgument.username} / {topArgument.scoreLabel}
+            </footer>
+          </blockquote>
+        ) : (
+          <p>No champion argument yet.</p>
+        )}
+      </div>
     </div>
-  </section>
+  </details>
 );

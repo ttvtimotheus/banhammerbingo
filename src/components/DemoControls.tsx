@@ -20,8 +20,8 @@ export const DemoControls = ({ enabled, state, submitting, onAction }: DemoContr
   if (!enabled) return null;
 
   return (
-    <section className="panel demo-controls" aria-labelledby="demo-heading">
-      <h2 id="demo-heading">Demo Controls</h2>
+    <details className="mini-drawer demo-controls">
+      <summary id="demo-heading">Developer panel</summary>
       <div className="demo-controls__buttons">
         {actions.map((item) => (
           <button
@@ -38,6 +38,6 @@ export const DemoControls = ({ enabled, state, submitting, onAction }: DemoContr
         <summary>Current raw state</summary>
         <pre>{JSON.stringify(state, null, 2)}</pre>
       </details>
-    </section>
+    </details>
   );
 };

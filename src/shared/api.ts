@@ -3,6 +3,7 @@ export type {
   InitGameResponse,
   ResolveResponse,
   RestartResponse,
+  SubscribeResponse,
   VoteResponse,
 } from '../game/types';
 

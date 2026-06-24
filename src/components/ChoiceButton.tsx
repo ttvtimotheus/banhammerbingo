@@ -4,18 +4,29 @@ type ChoiceButtonProps = {
   choice: Choice;
   disabled: boolean;
   userVote: UserVoteRecord | null;
+  revealEffects: boolean;
   onVote: (choiceId: string) => void;
+};
+
+const statLabels: Record<string, string> = {
+  trust: 'Trust',
+  drama: 'Drama',
+  growth: 'Growth',
+  quality: 'Quality',
+  modStress: 'Stress',
+  reputation: 'Rep',
 };
 
 const formatEffects = (choice: Choice): string =>
   Object.entries(choice.effects)
-    .map(([key, value]) => `${key.replace('modStress', 'mod stress')} ${value && value > 0 ? '+' : ''}${value}`)
+    .map(([key, value]) => `${statLabels[key] ?? key} ${value && value > 0 ? '+' : ''}${value}`)
     .join(' / ');
 
 export const ChoiceButton = ({
   choice,
   disabled,
   userVote,
+  revealEffects,
   onVote,
 }: ChoiceButtonProps) => {
   const selected = userVote?.choiceId === choice.id;
@@ -30,10 +41,12 @@ export const ChoiceButton = ({
     >
       <span className="choice-button__topline">
         <span className="choice-button__label">{choice.label}</span>
-        <span className="choice-button__role">{choice.roleAffinity}</span>
       </span>
       <span className="choice-button__description">{choice.description}</span>
-      <span className="choice-button__effects">{formatEffects(choice)}</span>
+      <span className="choice-button__footer">
+        <span className="choice-button__role">{choice.roleAffinity}</span>
+        <span className="choice-button__effects" aria-hidden={!revealEffects}>{formatEffects(choice)}</span>
+      </span>
     </button>
   );
 };
