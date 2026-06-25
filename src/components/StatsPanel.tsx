@@ -22,16 +22,12 @@ export const StatsPanel = ({ stats, latestDay }: StatsPanelProps) => (
         const change = latestDay?.effects[item.key] ?? null;
         return (
           <div className={`stat-chip ${item.className}`} key={item.key}>
-            <div className="stat-chip__label">
-              <span>{item.label}</span>
-              <span>
-                {stats[item.key]}
-                {change ? ` (${change > 0 ? '+' : ''}${change})` : ''}
-              </span>
-            </div>
-            <div className="stat-chip__track" aria-hidden="true">
-              <span style={{ width: `${stats[item.key]}%` }} />
-            </div>
+            <span className="stat-chip__dot" aria-hidden="true" />
+            <span className="stat-chip__name">{item.label === 'Mod Stress' ? 'Stress' : item.label === 'Reputation' ? 'Rep' : item.label}</span>
+            <span className="stat-chip__value">
+              {stats[item.key]}
+              {change ? ` ${change > 0 ? '+' : ''}${change}` : ''}
+            </span>
           </div>
         );
       })}

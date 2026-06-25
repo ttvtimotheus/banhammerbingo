@@ -1,6 +1,5 @@
 import type { GameEvent, UserVoteRecord } from '../game/types';
 import { ChoiceButton } from './ChoiceButton';
-import { VoteResults } from './VoteResults';
 
 type DilemmaCardProps = {
   event: GameEvent;
@@ -38,19 +37,16 @@ export const DilemmaCard = ({
           disabled={submitting}
           userVote={userVote}
           revealEffects={Boolean(userVote)}
+          voteCount={voteCounts[choice.id] ?? 0}
+          votePercentage={votePercentages[choice.id] ?? 0}
           onVote={onVote}
         />
       ))}
     </div>
-    {userVote ? (
-      <VoteResults
-        event={event}
-        voteCounts={voteCounts}
-        votePercentages={votePercentages}
-        selectedChoiceId={userVote.choiceId}
-      />
-    ) : (
-      <p className="comment-prompt">Pick the least doomed option. The comment section can explain the damage.</p>
-    )}
+    <p className="comment-prompt">
+      {userVote
+        ? 'Now explain your vote in the comments. Tomorrow one argument gets the spotlight.'
+        : 'Pick the least doomed option. The comment section can explain the damage.'}
+    </p>
   </section>
 );

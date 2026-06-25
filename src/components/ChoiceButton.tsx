@@ -5,6 +5,8 @@ type ChoiceButtonProps = {
   disabled: boolean;
   userVote: UserVoteRecord | null;
   revealEffects: boolean;
+  voteCount: number;
+  votePercentage: number;
   onVote: (choiceId: string) => void;
 };
 
@@ -27,9 +29,12 @@ export const ChoiceButton = ({
   disabled,
   userVote,
   revealEffects,
+  voteCount,
+  votePercentage,
   onVote,
 }: ChoiceButtonProps) => {
   const selected = userVote?.choiceId === choice.id;
+  const voteLabel = `${voteCount} ${voteCount === 1 ? 'vote' : 'votes'}`;
 
   return (
     <button
@@ -41,12 +46,21 @@ export const ChoiceButton = ({
     >
       <span className="choice-button__topline">
         <span className="choice-button__label">{choice.label}</span>
+        {selected ? <span className="choice-button__picked">Your vote</span> : null}
       </span>
       <span className="choice-button__description">{choice.description}</span>
       <span className="choice-button__footer">
         <span className="choice-button__role">{choice.roleAffinity}</span>
-        <span className="choice-button__effects" aria-hidden={!revealEffects}>{formatEffects(choice)}</span>
+        {revealEffects ? (
+          <span className="choice-button__result-chip">
+            {voteLabel}
+            {votePercentage > 0 ? ` · ${votePercentage}%` : ''}
+          </span>
+        ) : null}
       </span>
+      {revealEffects ? (
+        <span className="choice-button__effects" aria-hidden={!revealEffects}>{formatEffects(choice)}</span>
+      ) : null}
     </button>
   );
 };

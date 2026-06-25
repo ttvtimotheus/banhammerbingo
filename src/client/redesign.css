@@ -186,11 +186,11 @@ body {
 .dilemma-card {
   position: relative;
   display: grid;
-  gap: 8px;
+  gap: 7px;
   overflow: hidden;
   border: 2px solid var(--border);
-  border-radius: 20px;
-  padding: 11px;
+  border-radius: 18px;
+  padding: 10px;
   background:
     radial-gradient(circle at 92% 8%, rgb(255 255 255 / 0.54), transparent 115px),
     linear-gradient(180deg, #ffd94f, #ffc828);
@@ -238,7 +238,7 @@ body {
 
 .dilemma-card h2 {
   color: var(--text);
-  font-size: clamp(1.08rem, 5vw, 1.55rem);
+  font-size: clamp(1rem, 4.5vw, 1.42rem);
   font-weight: 930;
   letter-spacing: 0;
   line-height: 1.02;
@@ -246,8 +246,8 @@ body {
 
 .dilemma-card > p {
   color: #3d3528;
-  font-size: clamp(0.88rem, 3.2vw, 0.98rem);
-  line-height: 1.28;
+  font-size: clamp(0.82rem, 2.95vw, 0.92rem);
+  line-height: 1.23;
 }
 
 .choice-grid {
@@ -260,10 +260,10 @@ body {
   display: grid;
   gap: 5px;
   width: 100%;
-  min-height: 58px;
+  min-height: 56px;
   border: 2px solid var(--border);
   border-radius: 15px;
-  padding: 8px 10px 9px;
+  padding: 8px 9px;
   color: var(--text);
   text-align: left;
   background: #fffefa;
@@ -289,20 +289,33 @@ body {
 }
 
 .choice-button__topline {
-  display: block;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 6px;
 }
 
 .choice-button__label {
   color: var(--text);
-  font-size: 0.9rem;
+  font-size: 0.86rem;
   font-weight: 910;
   line-height: 1.08;
 }
 
+.choice-button__picked {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 2px 6px;
+  color: #ffffff;
+  font-size: 0.56rem;
+  font-weight: 900;
+  background: #0b8e90;
+}
+
 .choice-button__description {
   color: #4e4942;
-  font-size: 0.76rem;
-  line-height: 1.18;
+  font-size: 0.72rem;
+  line-height: 1.14;
 }
 
 .choice-button__footer {
@@ -310,6 +323,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .choice-button__role {
@@ -317,17 +331,28 @@ body {
   border-radius: 999px;
   padding: 2px 6px;
   color: #111111;
-  font-size: 0.6rem;
+  font-size: 0.56rem;
   font-weight: 850;
   background: #dcf9fa;
+}
+
+.choice-button__result-chip {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 2px 6px;
+  color: var(--text);
+  font-size: 0.58rem;
+  font-weight: 860;
+  background: #fff1b8;
 }
 
 .choice-button__effects {
   display: none;
   color: #6b6255;
-  font-size: 0.68rem;
+  font-size: 0.58rem;
   font-weight: 760;
-  text-align: right;
+  line-height: 1.15;
+  text-align: left;
 }
 
 .dilemma-card--voted .choice-button__effects {
@@ -338,50 +363,8 @@ body {
   border-left: 3px solid var(--accent-2);
   padding-left: 9px;
   color: #4c4437;
-  font-size: 0.76rem;
-  line-height: 1.24;
-}
-
-.vote-results {
-  display: grid;
-  gap: 7px;
-  border-top: 2px dashed rgb(37 33 27 / 0.32);
-  padding-top: 9px;
-  animation: results-in 240ms ease-out;
-}
-
-.vote-result {
-  display: grid;
-  gap: 4px;
-}
-
-.vote-result__label,
-.vote-result__count {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  color: #40392d;
-  font-size: 0.78rem;
-  font-weight: 780;
-}
-
-.vote-result__bar,
-.stat-chip__track {
-  display: block;
-  overflow: hidden;
-  width: 100%;
-  height: 7px;
-  border-radius: 999px;
-  background: rgb(37 33 27 / 0.13);
-}
-
-.vote-result__bar span,
-.stat-chip__track span {
-  display: block;
-  height: 100%;
-  border-radius: inherit;
-  background: var(--accent);
-  transition: width 420ms ease;
+  font-size: 0.72rem;
+  line-height: 1.18;
 }
 
 .stat-strip {
@@ -398,33 +381,55 @@ body {
 }
 
 .stat-chip {
-  display: grid;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-width: 0;
-  gap: 4px;
+  gap: 5px;
+  min-height: 28px;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  padding: 4px 6px;
+  background: #fffdf8;
 }
 
-.stat-chip__label {
-  display: flex;
-  justify-content: space-between;
-  gap: 6px;
-  color: #4f4a43;
-  font-size: 0.58rem;
-  font-weight: 800;
+.stat-chip__dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  border-radius: 999px;
 }
 
-.stat-chip__label span {
+.stat-chip__name,
+.stat-chip__value {
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-size: 0.58rem;
+  font-weight: 820;
 }
 
-.stat--trust .stat-chip__track span { background: var(--success); }
-.stat--drama .stat-chip__track span { background: var(--danger); }
-.stat--growth .stat-chip__track span { background: #5fb7ff; }
-.stat--quality .stat-chip__track span { background: #a6e6d3; }
-.stat--stress .stat-chip__track span { background: #ff944d; }
-.stat--reputation .stat-chip__track span { background: #c9a7ff; }
+.stat-chip__name {
+  color: #5b5348;
+}
+
+.stat-chip__value {
+  color: var(--text);
+}
+
+.stat--trust .stat-chip__dot { background: var(--success); }
+.stat--drama .stat-chip__dot { background: var(--danger); }
+.stat--growth .stat-chip__dot { background: #5fb7ff; }
+.stat--quality .stat-chip__dot { background: #a6e6d3; }
+.stat--stress .stat-chip__dot { background: #ff944d; }
+.stat--reputation .stat-chip__dot { background: #c9a7ff; }
+
+.vote-feedback {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
 
 .quiet-stack {
   display: grid;
@@ -482,21 +487,23 @@ body {
 }
 
 .role-badge {
-  display: grid;
-  gap: 4px;
-  padding: 10px 12px;
+  display: inline-grid;
+  width: fit-content;
+  gap: 2px;
+  max-width: min(100%, 360px);
+  padding: 6px 10px;
   background: #e8fff8;
 }
 
 .role-badge strong {
   color: var(--text);
-  font-size: 1rem;
+  font-size: 0.84rem;
 }
 
 .role-badge span:last-child {
   color: #4f4a43;
-  font-size: 0.83rem;
-  line-height: 1.35;
+  font-size: 0.62rem;
+  line-height: 1.15;
 }
 
 .progress-panel__body,
@@ -513,7 +520,7 @@ body {
 .progress-panel__header h2 {
   margin: 0;
   color: var(--text);
-  font-size: 1rem;
+  font-size: 0.88rem;
 }
 
 .secondary-action,
@@ -550,7 +557,7 @@ body {
 .progress-metrics strong {
   display: block;
   color: var(--text);
-  font-size: 1.05rem;
+  font-size: 0.92rem;
 }
 
 .milestone-list ul,
@@ -559,6 +566,13 @@ body {
 .how-to-play ol {
   margin: 0;
   padding-left: 18px;
+}
+
+.micro-note {
+  margin: 0;
+  color: #6a6256;
+  font-size: 0.72rem;
+  line-height: 1.18;
 }
 
 .leaderboard-list li,
@@ -633,12 +647,7 @@ body {
   }
 
   .choice-button {
-    min-height: 68px;
-  }
-
-  .quiet-stack {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: start;
+    min-height: 64px;
   }
 
   .progress-panel,

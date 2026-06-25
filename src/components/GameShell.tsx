@@ -85,9 +85,14 @@ export const GameShell = ({
             onVote={onVote}
           />
 
+          {userVote ? (
+            <section className="vote-feedback" aria-label="Post vote feedback">
+              <UserRoleBadge role={userRole} />
+            </section>
+          ) : null}
+
           <div className="quiet-stack" aria-label="Secondary game information">
             <ConsequencePanel previousConsequence={state.previousConsequence} topArgument={latestArgument} />
-            {userVote ? <UserRoleBadge role={userRole} /> : null}
             {userVote ? (
               <ProgressPanel
                 state={state}

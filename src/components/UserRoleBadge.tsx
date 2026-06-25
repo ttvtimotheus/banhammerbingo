@@ -7,8 +7,8 @@ type UserRoleBadgeProps = {
 
 export const UserRoleBadge = ({ role }: UserRoleBadgeProps) => (
   <section className="role-badge" aria-label="Your role after voting">
-    <span className="role-badge__eyebrow">Role unlocked</span>
-    <strong>{role ?? 'Undecided Voter'}</strong>
+    <span className="role-badge__eyebrow">Unlocked</span>
+    <strong>{role ?? 'Undecided'}</strong>
     <span>{role ? getRoleDescription(role) : 'Vote to earn a community archetype.'}</span>
   </section>
 );
