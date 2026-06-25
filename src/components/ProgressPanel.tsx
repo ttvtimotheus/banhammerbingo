@@ -1,5 +1,7 @@
 import { getTopRoleStandings, getVisibleMilestoneLabels } from '../game/progress';
+import { chromeAssets, roleAssets } from '../client/assetRegistry';
 import type { GameState, UserProgress } from '../game/types';
+import { GameIcon } from './GameIcon';
 
 type ProgressPanelProps = {
   state: GameState;
@@ -19,7 +21,10 @@ export const ProgressPanel = ({
 
   return (
     <details className="mini-drawer progress-panel">
-      <summary id="progress-heading">Streaks & leaderboard</summary>
+      <summary id="progress-heading">
+        <GameIcon src={chromeAssets.stickyTape} className="mini-drawer__summary-icon" decorative />
+        <span>Streaks & leaderboard</span>
+      </summary>
       <div className="mini-drawer__body progress-panel__body">
         <div className="progress-panel__header">
           <div>
@@ -82,7 +87,10 @@ export const ProgressPanel = ({
             <ol>
               {roleStandings.map((entry) => (
                 <li key={entry.role}>
-                  <span>{entry.role}</span>
+                  <span className="role-standings__label">
+                    <GameIcon src={roleAssets[entry.role]} className="role-standings__icon" decorative />
+                    <span>{entry.role}</span>
+                  </span>
                   <span>{entry.count}</span>
                 </li>
               ))}

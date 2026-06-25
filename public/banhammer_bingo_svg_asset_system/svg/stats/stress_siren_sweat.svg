@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-label="Mod Stress icon">
+<title>Mod Stress icon</title>
+<path d="M22 112 L111 112 Q119 112 119 104 L119 28" stroke="#17130F" stroke-width="8" stroke-linecap="round" opacity="0.22"/><rect x="12" y="12" width="104" height="104" rx="28" fill="#E7D7FF" stroke="#17130F" stroke-width="6"/>
+<path d="M32 82 H96 V105 H32 Z" fill="#7357FF" stroke="#17130F" stroke-width="6" stroke-linejoin="round"/>
+<path d="M39 82 C39 54 50 34 64 34 C78 34 89 54 89 82 Z" fill="#C084FC" stroke="#17130F" stroke-width="6"/>
+<path d="M64 20 V12" stroke="#17130F" stroke-width="7" stroke-linecap="round"/>
+<path d="M36 29 L28 21" stroke="#17130F" stroke-width="7" stroke-linecap="round"/>
+<path d="M92 29 L100 21" stroke="#17130F" stroke-width="7" stroke-linecap="round"/>
+<circle cx="54" cy="65" r="5" fill="#17130F"/><circle cx="74" cy="65" r="5" fill="#17130F"/>
+<path d="M55 76 Q64 71 73 76" stroke="#17130F" stroke-width="4" stroke-linecap="round"/>
+
+</svg>

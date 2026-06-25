@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-label="Restriction choice icon">
+<title>Restriction choice icon</title>
+<path d="M22 112 L111 112 Q119 112 119 104 L119 28" stroke="#17130F" stroke-width="8" stroke-linecap="round" opacity="0.22"/>
+<rect x="12" y="12" width="104" height="104" rx="28" fill="#FFE8AE" stroke="#17130F" stroke-width="6"/>
+<rect x="29" y="34" width="70" height="50" rx="12" fill="#FFF9EA" stroke="#17130F" stroke-width="5"/>
+<path d="M45 47 H83 M45 59 H73" stroke="#17130F" stroke-width="5" stroke-linecap="round"/>
+<path d="M40 91 L89 42" stroke="#E83F4F" stroke-width="10" stroke-linecap="round"/>
+<circle cx="95" cy="36" r="14" fill="#FFD23F" stroke="#17130F" stroke-width="5"/>
+<path d="M89 36 H101" stroke="#17130F" stroke-width="5" stroke-linecap="round"/>
+</svg>

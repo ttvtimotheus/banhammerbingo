@@ -1,4 +1,6 @@
 import type { Choice, UserVoteRecord } from '../game/types';
+import { getChoiceAsset, getChoiceMarker } from '../client/assetRegistry';
+import { GameIcon } from './GameIcon';
 
 type ChoiceButtonProps = {
   choice: Choice;
@@ -34,6 +36,8 @@ export const ChoiceButton = ({
   onVote,
 }: ChoiceButtonProps) => {
   const selected = userVote?.choiceId === choice.id;
+  const isLeading = revealEffects && voteCount > 0 && votePercentage >= 50;
+  const marker = revealEffects ? getChoiceMarker(choice, selected, isLeading) : null;
   const voteLabel = `${voteCount} ${voteCount === 1 ? 'vote' : 'votes'}`;
 
   return (
@@ -45,7 +49,10 @@ export const ChoiceButton = ({
       aria-pressed={selected}
     >
       <span className="choice-button__topline">
-        <span className="choice-button__label">{choice.label}</span>
+        <span className="choice-button__title-group">
+          <GameIcon src={getChoiceAsset(choice)} className="choice-button__icon" decorative />
+          <span className="choice-button__label">{choice.label}</span>
+        </span>
         {selected ? <span className="choice-button__picked">Your vote</span> : null}
       </span>
       <span className="choice-button__description">{choice.description}</span>
@@ -53,6 +60,7 @@ export const ChoiceButton = ({
         <span className="choice-button__role">{choice.roleAffinity}</span>
         {revealEffects ? (
           <span className="choice-button__result-chip">
+            {marker ? <GameIcon src={marker} className="choice-button__marker" decorative /> : null}
             {voteLabel}
             {votePercentage > 0 ? ` · ${votePercentage}%` : ''}
           </span>

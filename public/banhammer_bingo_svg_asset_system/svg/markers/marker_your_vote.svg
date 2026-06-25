@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-label="Your vote marker icon">
+<title>Your vote marker icon</title>
+<path d="M22 112 L111 112 Q119 112 119 104 L119 28" stroke="#17130F" stroke-width="8" stroke-linecap="round" opacity="0.22"/><rect x="12" y="12" width="104" height="104" rx="28" fill="#DFF7E9" stroke="#17130F" stroke-width="6"/>
+<rect x="10" y="35" width="108" height="58" rx="22" fill="#DFF7E9" stroke="#17130F" stroke-width="5"/>
+<circle cx="38" cy="64" r="16" fill="#2FB36D" stroke="#17130F" stroke-width="4"/>
+<path d="M30 64 L36 70 L47 56" stroke="#FFF9EA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M60 58 H100 M60 70 H92" stroke="#17130F" stroke-width="5" stroke-linecap="round"/>
+
+</svg>

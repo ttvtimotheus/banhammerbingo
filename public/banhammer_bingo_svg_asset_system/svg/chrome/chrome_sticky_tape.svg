@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-label="Sticky note tape icon">
+<title>Sticky note tape icon</title>
+<path d="M22 112 L111 112 Q119 112 119 104 L119 28" stroke="#17130F" stroke-width="8" stroke-linecap="round" opacity="0.22"/><rect x="12" y="12" width="104" height="104" rx="28" fill="#FFE6A6" stroke="#17130F" stroke-width="6"/>
+<rect x="26" y="25" width="76" height="28" rx="6" fill="#F4D58D" stroke="#17130F" stroke-width="5" transform="rotate(-6 64 39)"/>
+<rect x="24" y="58" width="80" height="45" rx="8" fill="#FFF4CF" stroke="#17130F" stroke-width="5"/>
+<path d="M39 72 H88 M39 85 H77" stroke="#17130F" stroke-width="4" stroke-linecap="round" opacity="0.55"/>
+
+</svg>

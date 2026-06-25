@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-label="Promote the Problem icon">
+<title>Promote the Problem icon</title>
+<path d="M22 112 L111 112 Q119 112 119 104 L119 28" stroke="#17130F" stroke-width="8" stroke-linecap="round" opacity="0.22"/><rect x="12" y="12" width="104" height="104" rx="28" fill="#F0E4FF" stroke="#17130F" stroke-width="6"/>
+<path d="M64 17 L103 35 V62 C103 88 85 106 64 116 C43 106 25 88 25 62 V35 Z" fill="#A875FF" stroke="#17130F" stroke-width="6" stroke-linejoin="round"/>
+<path d="M64 42 L72 62 H56 Z" fill="#FFD23F" stroke="#17130F" stroke-width="5" stroke-linejoin="round"/>
+<path d="M64 72 V86" stroke="#17130F" stroke-width="6" stroke-linecap="round"/>
+<circle cx="64" cy="96" r="4" fill="#17130F"/>
+<path d="M93 25.4 L95.1 29.6 L99.3 31 L95.1 32.4 L93 36.6 L90.9 32.4 L86.7 31 L90.9 29.6 Z" fill="#FFD23F" stroke="#17130F" stroke-width="1.0499999999999998" stroke-linejoin="round"/>
+</svg>

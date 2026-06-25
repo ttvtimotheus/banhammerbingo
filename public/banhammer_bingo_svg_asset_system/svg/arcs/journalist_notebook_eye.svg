@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-label="Journalist Watching icon">
+<title>Journalist Watching icon</title>
+<path d="M22 112 L111 112 Q119 112 119 104 L119 28" stroke="#17130F" stroke-width="8" stroke-linecap="round" opacity="0.22"/><circle cx="64" cy="64" r="50" fill="#FFF4CF" stroke="#17130F" stroke-width="6"/>
+<rect x="31" y="23" width="66" height="86" rx="8" fill="#FFF9EA" stroke="#17130F" stroke-width="6"/>
+<path d="M44 23 V109" stroke="#17130F" stroke-width="4"/>
+<path d="M54 45 C64 31 83 31 93 45 C83 60 64 60 54 45 Z" fill="#D8FAFF" stroke="#17130F" stroke-width="4"/>
+<circle cx="74" cy="45" r="7" fill="#45A8F2" stroke="#17130F" stroke-width="4"/>
+<path d="M55 71 H84 M55 84 H76" stroke="#17130F" stroke-width="5" stroke-linecap="round"/>
+
+</svg>

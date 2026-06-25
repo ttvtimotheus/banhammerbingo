@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-label="Growth choice icon">
+<title>Growth choice icon</title>
+<path d="M22 112 L111 112 Q119 112 119 104 L119 28" stroke="#17130F" stroke-width="8" stroke-linecap="round" opacity="0.22"/>
+<rect x="12" y="12" width="104" height="104" rx="28" fill="#DDF1FF" stroke="#17130F" stroke-width="6"/>
+<path d="M28 89 H102" stroke="#17130F" stroke-width="6" stroke-linecap="round"/>
+<path d="M34 80 L54 60 L70 72 L92 44" stroke="#45A8F2" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M92 44 H106 V58" stroke="#17130F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="52" cy="90" r="8" fill="#2FB36D" stroke="#17130F" stroke-width="4"/>
+</svg>

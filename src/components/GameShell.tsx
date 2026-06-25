@@ -7,6 +7,7 @@ import type {
   UserVoteRecord,
 } from '../game/types';
 import { getCommunityTitle } from '../game/logic';
+import { wordmarkAsset } from '../client/assetRegistry';
 import { ConsequencePanel } from './ConsequencePanel';
 import { DemoControls } from './DemoControls';
 import { DilemmaCard } from './DilemmaCard';
@@ -57,8 +58,8 @@ export const GameShell = ({
     <main id="maincontent" className="game-shell game-shell--play" tabIndex={-1}>
       <header className="game-topbar" aria-labelledby="game-title">
         <div className="game-brand">
-          <span className="game-brand__mark" aria-hidden="true">B</span>
-          <h1 id="game-title">Banhammer Bingo</h1>
+          <img className="game-brand__wordmark" src={wordmarkAsset} alt="Banhammer Bingo" />
+          <h1 id="game-title" className="sr-only">Banhammer Bingo</h1>
         </div>
         <span className="day-token">Day {state.currentDay}</span>
       </header>

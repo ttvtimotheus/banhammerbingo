@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-label="Rule Lawyer icon">
+<title>Rule Lawyer icon</title>
+<path d="M22 112 L111 112 Q119 112 119 104 L119 28" stroke="#17130F" stroke-width="8" stroke-linecap="round" opacity="0.22"/><path d="M64 8 L80 18 L99 18 L108 35 L120 48 L116 68 L120 88 L104 101 L96 118 L74 118 L64 124 L54 118 L32 118 L24 101 L8 88 L12 68 L8 48 L20 35 L29 18 L48 18 Z" fill="#FFF4CF" stroke="#17130F" stroke-width="5" stroke-linejoin="round"/>
+<path d="M34 24 H84 C96 24 96 42 84 42 H48 V94 C48 103 37 107 30 101 C23 95 25 84 34 84 Z" fill="#FFF9EA" stroke="#17130F" stroke-width="5"/>
+<path d="M48 42 H94 V92 C94 102 83 106 76 100 C70 95 72 84 82 84 H48" fill="#FFF9EA" stroke="#17130F" stroke-width="5"/>
+<path d="M56 56 H82 M56 68 H79" stroke="#17130F" stroke-width="5" stroke-linecap="round"/>
+<circle cx="83" cy="83" r="13" fill="#E83F4F" stroke="#17130F" stroke-width="4"/>
+
+</svg>

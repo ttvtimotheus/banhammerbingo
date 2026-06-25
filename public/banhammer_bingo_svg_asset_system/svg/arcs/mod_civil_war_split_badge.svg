@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-label="Mod Civil War icon">
+<title>Mod Civil War icon</title>
+<path d="M22 112 L111 112 Q119 112 119 104 L119 28" stroke="#17130F" stroke-width="8" stroke-linecap="round" opacity="0.22"/><circle cx="64" cy="64" r="50" fill="#F0E4FF" stroke="#17130F" stroke-width="6"/>
+<path d="M64 14 L104 33 V60 C104 86 86 105 64 115 C42 105 24 86 24 60 V33 Z" fill="#A875FF" stroke="#17130F" stroke-width="6" stroke-linejoin="round"/>
+<path d="M64 15 V114" stroke="#17130F" stroke-width="5"/>
+<path d="M34 61 H55" stroke="#FFF9EA" stroke-width="8" stroke-linecap="round"/>
+<path d="M73 61 H94" stroke="#FF6B3D" stroke-width="8" stroke-linecap="round"/>
+<path d="M44 43 L55 52 M55 43 L44 52 M73 43 L84 52 M84 43 L73 52" stroke="#17130F" stroke-width="5" stroke-linecap="round"/>
+
+</svg>

@@ -12,6 +12,11 @@ import type {
   UserVoteRecord,
   VoteResponse,
 } from '../../game/types';
+import {
+  type Celebration,
+  getSubscribeCelebration,
+  getVoteCelebration,
+} from '../celebrationLogic';
 
 type GameViewState = {
   loading: boolean;
@@ -27,6 +32,7 @@ type GameViewState = {
   userProgress: UserProgress | null;
   votePercentages: Record<string, number>;
   isDemoEnabled: boolean;
+  celebration: Celebration | null;
 };
 
 const initialState: GameViewState = {
@@ -43,6 +49,7 @@ const initialState: GameViewState = {
   userProgress: null,
   votePercentages: {},
   isDemoEnabled: false,
+  celebration: null,
 };
 
 const assertOk = async (response: Response): Promise<void> => {
@@ -69,8 +76,21 @@ export const useGame = () => {
       userProgress: data.userProgress,
       votePercentages: data.votePercentages,
       isDemoEnabled: data.isDemoEnabled,
+      celebration: null,
     });
   }, []);
+
+  useEffect(() => {
+    if (!viewState.celebration) return;
+
+    const timeoutId = window.setTimeout(() => {
+      setViewState((current) => ({ ...current, celebration: null }));
+    }, 1800);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [viewState.celebration]);
 
   const refresh = useCallback(async () => {
     setViewState((current) => ({ ...current, loading: true, error: null }));
@@ -106,6 +126,7 @@ export const useGame = () => {
       userRole: data.userRole,
       userProgress: data.userProgress,
       votePercentages: data.votePercentages,
+      celebration: getVoteCelebration(data, current.userProgress),
     }));
   }, []);
 
@@ -200,6 +221,7 @@ export const useGame = () => {
         error: null,
         message: data.message,
         userProgress: data.userProgress,
+        celebration: getSubscribeCelebration(data),
       }));
     } catch (error) {
       setViewState((current) => ({

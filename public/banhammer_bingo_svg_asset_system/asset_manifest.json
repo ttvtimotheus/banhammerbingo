@@ -1,0 +1,332 @@
+{
+  "name": "Banhammer Bingo SVG Asset System",
+  "version": "1.0.0",
+  "palette": {
+    "ink": "#17130F",
+    "paper": "#FFF4CF",
+    "cream": "#FFF9EA",
+    "line": "#2A2218",
+    "yellow": "#FFD23F",
+    "orange": "#FF9F43",
+    "red": "#E83F4F",
+    "green": "#2FB36D",
+    "teal": "#159A9C",
+    "blue": "#45A8F2",
+    "purple": "#A875FF",
+    "pink": "#FF77AA",
+    "gold": "#F7B733",
+    "gray": "#6C665E",
+    "dark": "#241F1A",
+    "light": "#FFFDF5"
+  },
+  "assets": [
+    {
+      "category": "stats",
+      "slug": "trust_handshake_shield",
+      "label": "Trust",
+      "svg": "svg/stats/trust_handshake_shield.svg",
+      "png": "png/stats/trust_handshake_shield.png"
+    },
+    {
+      "category": "stats",
+      "slug": "drama_flame",
+      "label": "Drama",
+      "svg": "svg/stats/drama_flame.svg",
+      "png": "png/stats/drama_flame.png"
+    },
+    {
+      "category": "stats",
+      "slug": "growth_arrow_sprout",
+      "label": "Growth",
+      "svg": "svg/stats/growth_arrow_sprout.svg",
+      "png": "png/stats/growth_arrow_sprout.png"
+    },
+    {
+      "category": "stats",
+      "slug": "quality_diamond_star",
+      "label": "Quality",
+      "svg": "svg/stats/quality_diamond_star.svg",
+      "png": "png/stats/quality_diamond_star.png"
+    },
+    {
+      "category": "stats",
+      "slug": "stress_siren_sweat",
+      "label": "Mod Stress",
+      "svg": "svg/stats/stress_siren_sweat.svg",
+      "png": "png/stats/stress_siren_sweat.png"
+    },
+    {
+      "category": "stats",
+      "slug": "reputation_rosette",
+      "label": "Reputation",
+      "svg": "svg/stats/reputation_rosette.svg",
+      "png": "png/stats/reputation_rosette.png"
+    },
+    {
+      "category": "roles",
+      "slug": "peacekeeper_dove_gavel",
+      "label": "Peacekeeper",
+      "svg": "svg/roles/peacekeeper_dove_gavel.svg",
+      "png": "png/roles/peacekeeper_dove_gavel.png"
+    },
+    {
+      "category": "roles",
+      "slug": "drama_farmer_pitchfork",
+      "label": "Drama Farmer",
+      "svg": "svg/roles/drama_farmer_pitchfork.svg",
+      "png": "png/roles/drama_farmer_pitchfork.png"
+    },
+    {
+      "category": "roles",
+      "slug": "rule_lawyer_scroll_stamp",
+      "label": "Rule Lawyer",
+      "svg": "svg/roles/rule_lawyer_scroll_stamp.svg",
+      "png": "png/roles/rule_lawyer_scroll_stamp.png"
+    },
+    {
+      "category": "roles",
+      "slug": "growth_hacker_rocket_chart",
+      "label": "Growth Hacker",
+      "svg": "svg/roles/growth_hacker_rocket_chart.svg",
+      "png": "png/roles/growth_hacker_rocket_chart.png"
+    },
+    {
+      "category": "roles",
+      "slug": "quality_purist_jewel",
+      "label": "Quality Purist",
+      "svg": "svg/roles/quality_purist_jewel.svg",
+      "png": "png/roles/quality_purist_jewel.png"
+    },
+    {
+      "category": "roles",
+      "slug": "banhammer_enthusiast_hammer_seal",
+      "label": "Banhammer Enthusiast",
+      "svg": "svg/roles/banhammer_enthusiast_hammer_seal.svg",
+      "png": "png/roles/banhammer_enthusiast_hammer_seal.png"
+    },
+    {
+      "category": "roles",
+      "slug": "chaos_goblin_grin",
+      "label": "Chaos Goblin",
+      "svg": "svg/roles/chaos_goblin_grin.svg",
+      "png": "png/roles/chaos_goblin_grin.png"
+    },
+    {
+      "category": "roles",
+      "slug": "community_therapist_bubble_heart",
+      "label": "Community Therapist",
+      "svg": "svg/roles/community_therapist_bubble_heart.svg",
+      "png": "png/roles/community_therapist_bubble_heart.png"
+    },
+    {
+      "category": "roles",
+      "slug": "algorithm_whisperer_orbit_eye",
+      "label": "Algorithm Whisperer",
+      "svg": "svg/roles/algorithm_whisperer_orbit_eye.svg",
+      "png": "png/roles/algorithm_whisperer_orbit_eye.png"
+    },
+    {
+      "category": "roles",
+      "slug": "sponsor_gremlin_coin_claws",
+      "label": "Sponsor Gremlin",
+      "svg": "svg/roles/sponsor_gremlin_coin_claws.svg",
+      "png": "png/roles/sponsor_gremlin_coin_claws.png"
+    },
+    {
+      "category": "arcs",
+      "slug": "power_user_crown_comment",
+      "label": "Power User",
+      "svg": "svg/arcs/power_user_crown_comment.svg",
+      "png": "png/arcs/power_user_crown_comment.png"
+    },
+    {
+      "category": "arcs",
+      "slug": "bot_invasion_bug_swarm",
+      "label": "Bot Invasion",
+      "svg": "svg/arcs/bot_invasion_bug_swarm.svg",
+      "png": "png/arcs/bot_invasion_bug_swarm.png"
+    },
+    {
+      "category": "arcs",
+      "slug": "mod_civil_war_split_badge",
+      "label": "Mod Civil War",
+      "svg": "svg/arcs/mod_civil_war_split_badge.svg",
+      "png": "png/arcs/mod_civil_war_split_badge.png"
+    },
+    {
+      "category": "arcs",
+      "slug": "journalist_notebook_eye",
+      "label": "Journalist Watching",
+      "svg": "svg/arcs/journalist_notebook_eye.svg",
+      "png": "png/arcs/journalist_notebook_eye.png"
+    },
+    {
+      "category": "arcs",
+      "slug": "new_user_exodus_open_door",
+      "label": "New User Exodus",
+      "svg": "svg/arcs/new_user_exodus_open_door.svg",
+      "png": "png/arcs/new_user_exodus_open_door.png"
+    },
+    {
+      "category": "arcs",
+      "slug": "meme_economy_coin_face",
+      "label": "Meme Economy",
+      "svg": "svg/arcs/meme_economy_coin_face.svg",
+      "png": "png/arcs/meme_economy_coin_face.png"
+    },
+    {
+      "category": "arcs",
+      "slug": "algorithm_blessing_glowing_arrow",
+      "label": "Algorithm Blessing",
+      "svg": "svg/arcs/algorithm_blessing_glowing_arrow.svg",
+      "png": "png/arcs/algorithm_blessing_glowing_arrow.png"
+    },
+    {
+      "category": "arcs",
+      "slug": "sponsor_temptation_gold_pin",
+      "label": "Sponsor Temptation",
+      "svg": "svg/arcs/sponsor_temptation_gold_pin.svg",
+      "png": "png/arcs/sponsor_temptation_gold_pin.png"
+    },
+    {
+      "category": "arcs",
+      "slug": "ancient_forum_lore_scroll",
+      "label": "Ancient Forum Lore",
+      "svg": "svg/arcs/ancient_forum_lore_scroll.svg",
+      "png": "png/arcs/ancient_forum_lore_scroll.png"
+    },
+    {
+      "category": "arcs",
+      "slug": "unhinged_ama_microphone",
+      "label": "Unhinged AMA",
+      "svg": "svg/arcs/unhinged_ama_microphone.svg",
+      "png": "png/arcs/unhinged_ama_microphone.png"
+    },
+    {
+      "category": "choices",
+      "slug": "choice_bonk_banhammer",
+      "label": "Bonk With Banhammer",
+      "svg": "svg/choices/choice_bonk_banhammer.svg",
+      "png": "png/choices/choice_bonk_banhammer.png"
+    },
+    {
+      "category": "choices",
+      "slug": "choice_dm_adult",
+      "label": "DM Them Like An Adult",
+      "svg": "svg/choices/choice_dm_adult.svg",
+      "png": "png/choices/choice_dm_adult.png"
+    },
+    {
+      "category": "choices",
+      "slug": "choice_numbers_go_brrr",
+      "label": "Numbers Go Brrr",
+      "svg": "svg/choices/choice_numbers_go_brrr.svg",
+      "png": "png/choices/choice_numbers_go_brrr.png"
+    },
+    {
+      "category": "choices",
+      "slug": "choice_promote_problem",
+      "label": "Promote the Problem",
+      "svg": "svg/choices/choice_promote_problem.svg",
+      "png": "png/choices/choice_promote_problem.png"
+    },
+    {
+      "category": "choices",
+      "slug": "choice_action_ban",
+      "label": "Restriction action",
+      "svg": "svg/choices/choice_action_ban.svg"
+    },
+    {
+      "category": "choices",
+      "slug": "choice_action_message",
+      "label": "Diplomacy action",
+      "svg": "svg/choices/choice_action_message.svg"
+    },
+    {
+      "category": "choices",
+      "slug": "choice_action_growth",
+      "label": "Growth action",
+      "svg": "svg/choices/choice_action_growth.svg"
+    },
+    {
+      "category": "choices",
+      "slug": "choice_action_quality",
+      "label": "Quality action",
+      "svg": "svg/choices/choice_action_quality.svg"
+    },
+    {
+      "category": "choices",
+      "slug": "choice_action_vote",
+      "label": "Community vote action",
+      "svg": "svg/choices/choice_action_vote.svg"
+    },
+    {
+      "category": "choices",
+      "slug": "choice_action_sponsor",
+      "label": "Sponsor action",
+      "svg": "svg/choices/choice_action_sponsor.svg"
+    },
+    {
+      "category": "choices",
+      "slug": "choice_action_chaos",
+      "label": "Chaos action",
+      "svg": "svg/choices/choice_action_chaos.svg"
+    },
+    {
+      "category": "markers",
+      "slug": "marker_your_vote",
+      "label": "Your vote marker",
+      "svg": "svg/markers/marker_your_vote.svg",
+      "png": "png/markers/marker_your_vote.png"
+    },
+    {
+      "category": "markers",
+      "slug": "marker_leading",
+      "label": "Leading marker",
+      "svg": "svg/markers/marker_leading.svg",
+      "png": "png/markers/marker_leading.png"
+    },
+    {
+      "category": "markers",
+      "slug": "marker_dangerous",
+      "label": "Dangerous marker",
+      "svg": "svg/markers/marker_dangerous.svg",
+      "png": "png/markers/marker_dangerous.png"
+    },
+    {
+      "category": "markers",
+      "slug": "marker_stable",
+      "label": "Stable marker",
+      "svg": "svg/markers/marker_stable.svg",
+      "png": "png/markers/marker_stable.png"
+    },
+    {
+      "category": "chrome",
+      "slug": "chrome_report_tag",
+      "label": "Report tag",
+      "svg": "svg/chrome/chrome_report_tag.svg",
+      "png": "png/chrome/chrome_report_tag.png"
+    },
+    {
+      "category": "chrome",
+      "slug": "chrome_sticky_tape",
+      "label": "Sticky note tape",
+      "svg": "svg/chrome/chrome_sticky_tape.svg",
+      "png": "png/chrome/chrome_sticky_tape.png"
+    },
+    {
+      "category": "chrome",
+      "slug": "chrome_stamped_seal",
+      "label": "Stamped seal",
+      "svg": "svg/chrome/chrome_stamped_seal.svg",
+      "png": "png/chrome/chrome_stamped_seal.png"
+    },
+    {
+      "category": "branding",
+      "slug": "banhammer_bingo_mark",
+      "label": "Banhammer Bingo mark",
+      "svg": "svg/branding/banhammer_bingo_mark.svg",
+      "png": "png/branding/banhammer_bingo_mark.png"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-label="Sponsor Temptation icon">
+<title>Sponsor Temptation icon</title>
+<path d="M22 112 L111 112 Q119 112 119 104 L119 28" stroke="#17130F" stroke-width="8" stroke-linecap="round" opacity="0.22"/><circle cx="64" cy="64" r="50" fill="#FFE6A6" stroke="#17130F" stroke-width="6"/>
+<path d="M64 19 C83 19 98 34 98 53 C98 79 64 112 64 112 C64 112 30 79 30 53 C30 34 45 19 64 19 Z" fill="#FFD23F" stroke="#17130F" stroke-width="6"/>
+<circle cx="64" cy="52" r="18" fill="#FFF9EA" stroke="#17130F" stroke-width="5"/>
+<path d="M56 52 H72 M58 63 H70 M60 41 H68" stroke="#17130F" stroke-width="5" stroke-linecap="round"/>
+
+</svg>

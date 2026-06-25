@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-label="Numbers Go Brrr icon">
+<title>Numbers Go Brrr icon</title>
+<path d="M22 112 L111 112 Q119 112 119 104 L119 28" stroke="#17130F" stroke-width="8" stroke-linecap="round" opacity="0.22"/><rect x="12" y="12" width="104" height="104" rx="28" fill="#CDEEFF" stroke="#17130F" stroke-width="6"/>
+<path d="M24 91 H104" stroke="#17130F" stroke-width="6" stroke-linecap="round"/>
+<path d="M35 80 L55 61 L69 72 L100 33" stroke="#2FB36D" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M83 33 H100 V50" stroke="#2FB36D" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M35 80 L55 61 L69 72 L100 33" stroke="#17130F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M38 42 C39 26 57 20 67 32 C83 22 101 34 96 52 C108 58 103 81 88 81 H50 C30 81 24 55 38 42 Z" fill="#FFF9EA" stroke="#17130F" stroke-width="5" opacity="0.95"/>
+
+</svg>

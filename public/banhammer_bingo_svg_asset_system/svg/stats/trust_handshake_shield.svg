@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-label="Trust icon">
+<title>Trust icon</title>
+<path d="M22 112 L111 112 Q119 112 119 104 L119 28" stroke="#17130F" stroke-width="8" stroke-linecap="round" opacity="0.22"/><rect x="12" y="12" width="104" height="104" rx="28" fill="#BFECCF" stroke="#17130F" stroke-width="6"/>
+<path d="M64 22 L96 36 V58 C96 78 84 94 64 103 C44 94 32 78 32 58 V36 Z" fill="#65D889" stroke="#17130F" stroke-width="6" stroke-linejoin="round"/>
+<path d="M42 67 L57 82 L88 47" stroke="#FFF9EA" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M42 67 L57 82 L88 47" stroke="#17130F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+</svg>

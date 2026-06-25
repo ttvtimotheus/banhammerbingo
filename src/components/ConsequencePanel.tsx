@@ -1,4 +1,6 @@
 import type { TopArgument } from '../game/types';
+import { chromeAssets } from '../client/assetRegistry';
+import { GameIcon } from './GameIcon';
 
 type ConsequencePanelProps = {
   previousConsequence: string | null;
@@ -11,11 +13,17 @@ export const ConsequencePanel = ({
 }: ConsequencePanelProps) => (
   previousConsequence ? (
     <details className="mini-drawer consequence-drawer" open>
-      <summary id="consequence-heading">Yesterday&apos;s fallout</summary>
+      <summary id="consequence-heading">
+        <GameIcon src={chromeAssets.reportTag} className="mini-drawer__summary-icon" decorative />
+        <span>Yesterday&apos;s fallout</span>
+      </summary>
       <div className="mini-drawer__body">
         <p>{previousConsequence}</p>
         <div className="argument-box">
-          <span className="argument-box__label">Top Argument</span>
+          <span className="argument-box__label">
+            <GameIcon src={chromeAssets.stampedSeal} className="argument-box__icon" decorative />
+            <span>Top Argument</span>
+          </span>
           {topArgument ? (
             <blockquote>
               <p>{topArgument.excerpt}</p>

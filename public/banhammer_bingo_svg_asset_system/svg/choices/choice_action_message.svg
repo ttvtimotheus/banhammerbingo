@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-label="Diplomacy choice icon">
+<title>Diplomacy choice icon</title>
+<path d="M22 112 L111 112 Q119 112 119 104 L119 28" stroke="#17130F" stroke-width="8" stroke-linecap="round" opacity="0.22"/>
+<rect x="12" y="12" width="104" height="104" rx="28" fill="#DDF6FA" stroke="#17130F" stroke-width="6"/>
+<rect x="20" y="28" width="88" height="60" rx="18" fill="#FFF9EA" stroke="#17130F" stroke-width="5"/>
+<path d="M28 40 L64 65 L100 40" stroke="#17130F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="93" cy="32" r="15" fill="#E83F4F" stroke="#17130F" stroke-width="5"/>
+<path d="M93 24 V34" stroke="#FFF9EA" stroke-width="5" stroke-linecap="round"/>
+<circle cx="93" cy="41" r="3" fill="#FFF9EA"/>
+</svg>

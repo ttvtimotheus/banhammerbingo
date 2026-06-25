@@ -1,3 +1,5 @@
+import { wordmarkAsset } from './assetRegistry';
+import { StickerBurst } from '../components/StickerBurst';
 import { GameShell } from '../components/GameShell';
 import { useGame } from './hooks/useGame';
 
@@ -7,8 +9,7 @@ export const GameApp = () => {
   if (game.loading) {
     return (
       <main className="load-screen" aria-busy="true">
-        <span className="load-screen__mark" aria-hidden="true" />
-        <h1>Banhammer Bingo</h1>
+        <img className="load-screen__wordmark" src={wordmarkAsset} alt="Banhammer Bingo" />
         <p>Loading today&apos;s mess.</p>
       </main>
     );
@@ -35,20 +36,23 @@ export const GameApp = () => {
   }
 
   return (
-    <GameShell
-      state={game.state}
-      event={game.event}
-      userVote={game.userVote}
-      userRole={game.userRole}
-      userProgress={game.userProgress}
-      votePercentages={game.votePercentages}
-      isDemoEnabled={game.isDemoEnabled}
-      submitting={game.submitting}
-      message={game.message}
-      onVote={game.vote}
-      onDemoAction={game.runDemoAction}
-      onRestart={game.restart}
-      onSubscribe={game.subscribe}
-    />
+    <>
+      <StickerBurst celebration={game.celebration} />
+      <GameShell
+        state={game.state}
+        event={game.event}
+        userVote={game.userVote}
+        userRole={game.userRole}
+        userProgress={game.userProgress}
+        votePercentages={game.votePercentages}
+        isDemoEnabled={game.isDemoEnabled}
+        submitting={game.submitting}
+        message={game.message}
+        onVote={game.vote}
+        onDemoAction={game.runDemoAction}
+        onRestart={game.restart}
+        onSubscribe={game.subscribe}
+      />
+    </>
   );
 };

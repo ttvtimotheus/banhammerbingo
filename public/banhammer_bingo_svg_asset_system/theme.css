@@ -1,0 +1,38 @@
+/* Banhammer Bingo asset system theme tokens */
+:root {
+  --bb-ink: #17130F;
+  --bb-paper: #FFF4CF;
+  --bb-cream: #FFF9EA;
+  --bb-surface: #F7F0DE;
+  --bb-yellow: #FFD23F;
+  --bb-orange: #FF9F43;
+  --bb-red: #E83F4F;
+  --bb-green: #2FB36D;
+  --bb-teal: #159A9C;
+  --bb-blue: #45A8F2;
+  --bb-purple: #A875FF;
+  --bb-gold: #F7B733;
+  --bb-border: #2A2218;
+  --bb-muted: #6C665E;
+  --bb-radius-card: 24px;
+  --bb-radius-chip: 999px;
+  --bb-shadow-stamp: 0 5px 0 #17130F;
+}
+
+.bb-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.bb-token {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 2px solid var(--bb-border);
+  border-radius: var(--bb-radius-chip);
+  background: var(--bb-cream);
+  padding: 0.35rem 0.65rem;
+  font-weight: 800;
+}

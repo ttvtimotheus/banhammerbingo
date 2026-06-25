@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-label="Quality choice icon">
+<title>Quality choice icon</title>
+<path d="M22 112 L111 112 Q119 112 119 104 L119 28" stroke="#17130F" stroke-width="8" stroke-linecap="round" opacity="0.22"/>
+<rect x="12" y="12" width="104" height="104" rx="28" fill="#E9FAF3" stroke="#17130F" stroke-width="6"/>
+<path d="M64 20 L94 40 L82 84 L46 84 L34 40 Z" fill="#FFF9EA" stroke="#17130F" stroke-width="5" stroke-linejoin="round"/>
+<path d="M64 39 L70 52 L84 54 L73 64 L76 78 L64 71 L52 78 L55 64 L44 54 L58 52 Z" fill="#FFD23F" stroke="#17130F" stroke-width="4" stroke-linejoin="round"/>
+</svg>

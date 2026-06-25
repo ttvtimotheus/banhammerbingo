@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-label="Unhinged AMA icon">
+<title>Unhinged AMA icon</title>
+<path d="M22 112 L111 112 Q119 112 119 104 L119 28" stroke="#17130F" stroke-width="8" stroke-linecap="round" opacity="0.22"/><circle cx="64" cy="64" r="50" fill="#FFD0BD" stroke="#17130F" stroke-width="6"/>
+<rect x="51" y="21" width="26" height="54" rx="13" fill="#FF6B3D" stroke="#17130F" stroke-width="6"/>
+<path d="M40 57 C40 75 50 85 64 85 C78 85 88 75 88 57" stroke="#17130F" stroke-width="6" stroke-linecap="round"/>
+<path d="M64 85 V105 M48 105 H80" stroke="#17130F" stroke-width="6" stroke-linecap="round"/>
+<path d="M28 24.6 L30.4 29.4 L35.2 31 L30.4 32.6 L28 37.4 L25.6 32.6 L20.8 31 L25.6 29.4 Z" fill="#FFD23F" stroke="#17130F" stroke-width="1.2000000000000002" stroke-linejoin="round"/><path d="M102 30.6 L104.4 35.4 L109.2 37 L104.4 38.6 L102 43.4 L99.6 38.6 L94.8 37 L99.6 35.4 Z" fill="#FFD23F" stroke="#17130F" stroke-width="1.2000000000000002" stroke-linejoin="round"/><path d="M96 88.4 L98.1 92.6 L102.3 94 L98.1 95.4 L96 99.6 L93.9 95.4 L89.7 94 L93.9 92.6 Z" fill="#FFF4CF" stroke="#17130F" stroke-width="1.0499999999999998" stroke-linejoin="round"/>
+</svg>

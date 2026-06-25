@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-label="Drama icon">
+<title>Drama icon</title>
+<path d="M22 112 L111 112 Q119 112 119 104 L119 28" stroke="#17130F" stroke-width="8" stroke-linecap="round" opacity="0.22"/><rect x="12" y="12" width="104" height="104" rx="28" fill="#FFD0BD" stroke="#17130F" stroke-width="6"/>
+<path d="M70 16 C77 31 66 40 82 54 C96 66 94 92 75 105 C57 117 33 108 29 86 C26 69 35 56 48 45 C57 38 60 27 70 16 Z" fill="#FF6B3D" stroke="#17130F" stroke-width="6" stroke-linejoin="round"/>
+<path d="M62 56 C65 66 56 70 62 80 C68 90 81 85 79 73 C78 64 71 61 72 51 C67 53 64 54 62 56 Z" fill="#FFD23F" stroke="#17130F" stroke-width="4" stroke-linejoin="round"/>
+
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-label="Stable marker icon">
+<title>Stable marker icon</title>
+<path d="M22 112 L111 112 Q119 112 119 104 L119 28" stroke="#17130F" stroke-width="8" stroke-linecap="round" opacity="0.22"/><rect x="12" y="12" width="104" height="104" rx="28" fill="#D8FAFF" stroke="#17130F" stroke-width="6"/>
+<rect x="10" y="35" width="108" height="58" rx="22" fill="#D8FAFF" stroke="#17130F" stroke-width="5"/>
+<path d="M39 47 L55 55 V67 C55 78 48 85 39 89 C30 85 23 78 23 67 V55 Z" fill="#65D889" stroke="#17130F" stroke-width="4" stroke-linejoin="round"/>
+<path d="M32 68 L38 74 L48 61" stroke="#FFF9EA" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M64 58 H100 M64 70 H91" stroke="#17130F" stroke-width="5" stroke-linecap="round"/>
+
+</svg>

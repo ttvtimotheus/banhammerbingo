@@ -1,17 +1,24 @@
 import type { ResolvedDay, Stats } from '../game/types';
+import { statAssets } from '../client/assetRegistry';
+import { GameIcon } from './GameIcon';
 
 type StatsPanelProps = {
   stats: Stats;
   latestDay: ResolvedDay | null;
 };
 
-const labels: Array<{ key: keyof Stats; label: string; className: string }> = [
-  { key: 'trust', label: 'Trust', className: 'stat--trust' },
-  { key: 'drama', label: 'Drama', className: 'stat--drama' },
-  { key: 'growth', label: 'Growth', className: 'stat--growth' },
-  { key: 'quality', label: 'Quality', className: 'stat--quality' },
-  { key: 'modStress', label: 'Mod Stress', className: 'stat--stress' },
-  { key: 'reputation', label: 'Reputation', className: 'stat--reputation' },
+const labels: Array<{
+  key: keyof Stats;
+  label: string;
+  shortLabel: string;
+  className: string;
+}> = [
+  { key: 'trust', label: 'Trust', shortLabel: 'Tr', className: 'stat--trust' },
+  { key: 'drama', label: 'Drama', shortLabel: 'Dr', className: 'stat--drama' },
+  { key: 'growth', label: 'Growth', shortLabel: 'Gr', className: 'stat--growth' },
+  { key: 'quality', label: 'Quality', shortLabel: 'Qu', className: 'stat--quality' },
+  { key: 'modStress', label: 'Mod Stress', shortLabel: 'St', className: 'stat--stress' },
+  { key: 'reputation', label: 'Reputation', shortLabel: 'Rp', className: 'stat--reputation' },
 ];
 
 export const StatsPanel = ({ stats, latestDay }: StatsPanelProps) => (
@@ -21,9 +28,13 @@ export const StatsPanel = ({ stats, latestDay }: StatsPanelProps) => (
       {labels.map((item) => {
         const change = latestDay?.effects[item.key] ?? null;
         return (
-          <div className={`stat-chip ${item.className}`} key={item.key}>
-            <span className="stat-chip__dot" aria-hidden="true" />
-            <span className="stat-chip__name">{item.label === 'Mod Stress' ? 'Stress' : item.label === 'Reputation' ? 'Rep' : item.label}</span>
+          <div
+            className={`stat-chip ${item.className}`}
+            key={item.key}
+            title={`${item.label}: ${stats[item.key]}${change ? ` (${change > 0 ? '+' : ''}${change})` : ''}`}
+          >
+            <GameIcon src={statAssets[item.key]} className="stat-chip__icon" decorative />
+            <span className="stat-chip__name" aria-hidden="true">{item.shortLabel}</span>
             <span className="stat-chip__value">
               {stats[item.key]}
               {change ? ` ${change > 0 ? '+' : ''}${change}` : ''}

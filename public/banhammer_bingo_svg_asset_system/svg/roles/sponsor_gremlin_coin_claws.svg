@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-label="Sponsor Gremlin icon">
+<title>Sponsor Gremlin icon</title>
+<path d="M22 112 L111 112 Q119 112 119 104 L119 28" stroke="#17130F" stroke-width="8" stroke-linecap="round" opacity="0.22"/><path d="M64 8 L80 18 L99 18 L108 35 L120 48 L116 68 L120 88 L104 101 L96 118 L74 118 L64 124 L54 118 L32 118 L24 101 L8 88 L12 68 L8 48 L20 35 L29 18 L48 18 Z" fill="#FFE6A6" stroke="#17130F" stroke-width="5" stroke-linejoin="round"/>
+<circle cx="64" cy="58" r="32" fill="#FFD23F" stroke="#17130F" stroke-width="6"/>
+<path d="M55 48 H75 M52 60 H78 M58 72 H72" stroke="#17130F" stroke-width="6" stroke-linecap="round"/>
+<path d="M33 85 L21 101 M44 91 L36 109 M95 85 L107 101 M84 91 L92 109" stroke="#17130F" stroke-width="6" stroke-linecap="round"/>
+<circle cx="50" cy="42" r="5" fill="#17130F"/><circle cx="78" cy="42" r="5" fill="#17130F"/>
+
+</svg>
