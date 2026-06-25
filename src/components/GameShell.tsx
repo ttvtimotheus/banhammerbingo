@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type {
   DemoAction,
   GameEvent,
@@ -8,12 +9,9 @@ import type {
 } from '../game/types';
 import { getCommunityTitle } from '../game/logic';
 import { wordmarkAsset } from '../client/assetRegistry';
-import { ConsequencePanel } from './ConsequencePanel';
-import { DemoControls } from './DemoControls';
 import { DilemmaCard } from './DilemmaCard';
 import { EndingScreen } from './EndingScreen';
-import { HowToPlay } from './HowToPlay';
-import { ProgressPanel } from './ProgressPanel';
+import { GameMenu } from './GameMenu';
 import { StatsPanel } from './StatsPanel';
 import { UserRoleBadge } from './UserRoleBadge';
 
@@ -48,8 +46,8 @@ export const GameShell = ({
   onRestart,
   onSubscribe,
 }: GameShellProps) => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const latestDay = state.resolvedDayHistory.at(-1) ?? null;
-  const latestArgument = state.topArgumentHistory.at(-1) ?? null;
   const communityTitle = getCommunityTitle(state.stats);
 
   return (
@@ -61,7 +59,19 @@ export const GameShell = ({
           <img className="game-brand__wordmark" src={wordmarkAsset} alt="Banhammer Bingo" />
           <h1 id="game-title" className="sr-only">Banhammer Bingo</h1>
         </div>
-        <span className="day-token">Day {state.currentDay}</span>
+        <div className="game-topbar__actions">
+          <span className="day-token">Day {state.currentDay}</span>
+          <button
+            type="button"
+            className="menu-button"
+            aria-haspopup="dialog"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen(true)}
+          >
+            <span className="menu-button__bars" aria-hidden="true" />
+            <span>Menu</span>
+          </button>
+        </div>
       </header>
 
       <section className="community-line" aria-label="Current community">
@@ -91,29 +101,21 @@ export const GameShell = ({
               <UserRoleBadge role={userRole} />
             </section>
           ) : null}
-
-          <div className="quiet-stack" aria-label="Secondary game information">
-            <ConsequencePanel previousConsequence={state.previousConsequence} topArgument={latestArgument} />
-            {userVote ? (
-              <ProgressPanel
-                state={state}
-                userProgress={userProgress}
-                submitting={submitting}
-                onSubscribe={onSubscribe}
-              />
-            ) : null}
-            <HowToPlay />
-          </div>
         </>
       )}
-
-      <DemoControls
-        enabled={isDemoEnabled}
-        state={state}
-        submitting={submitting}
-        onAction={onDemoAction}
-      />
     </main>
+
+    <GameMenu
+      open={menuOpen}
+      onClose={() => setMenuOpen(false)}
+      state={state}
+      userVote={userVote}
+      userProgress={userProgress}
+      submitting={submitting}
+      isDemoEnabled={isDemoEnabled}
+      onSubscribe={onSubscribe}
+      onDemoAction={onDemoAction}
+    />
     </>
   );
 };

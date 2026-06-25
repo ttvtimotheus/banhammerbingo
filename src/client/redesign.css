@@ -833,3 +833,144 @@ body {
     filter: none;
   }
 }
+
+/* Topbar menu button */
+.game-topbar__actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.menu-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 32px;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 12px 4px 10px;
+  color: var(--text);
+  font-size: 0.74rem;
+  font-weight: 900;
+  background: #ffffff;
+  box-shadow: 0 3px 0 var(--border);
+}
+
+.menu-button__bars {
+  position: relative;
+  width: 15px;
+  height: 2px;
+  flex: 0 0 auto;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.menu-button__bars::before,
+.menu-button__bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 15px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.menu-button__bars::before {
+  top: -5px;
+}
+
+.menu-button__bars::after {
+  top: 5px;
+}
+
+/* Menu overlay (bottom sheet) */
+.game-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgb(23 19 14 / 0.55);
+}
+
+.game-menu__panel {
+  display: flex;
+  flex-direction: column;
+  width: min(560px, 100%);
+  max-height: 86vh;
+  max-height: 86dvh;
+  border: 2px solid var(--border);
+  border-bottom: none;
+  border-radius: 22px 22px 0 0;
+  background: var(--frame);
+  box-shadow: 0 -12px 44px rgb(37 33 27 / 0.32);
+  overflow: hidden;
+}
+
+.game-menu__header {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--surface-2);
+}
+
+.game-menu__header h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 950;
+}
+
+.game-menu__close {
+  flex: 0 0 auto;
+  min-height: 36px;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 15px;
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 880;
+  background: #ffffff;
+  box-shadow: 0 3px 0 var(--border);
+}
+
+.game-menu__body {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+@media (min-width: 540px) {
+  .game-menu {
+    align-items: center;
+    padding: 16px;
+  }
+
+  .game-menu__panel {
+    border: 2px solid var(--border);
+    border-radius: 22px;
+  }
+}
+
+@media (forced-colors: active) {
+  .menu-button,
+  .game-menu__panel,
+  .game-menu__close {
+    border: 1px solid ButtonBorder;
+    box-shadow: none;
+  }
+
+  .game-menu {
+    background: Canvas;
+  }
+}
